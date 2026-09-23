@@ -96,16 +96,17 @@ accordions.forEach(function (el) {
 ("use strict");
 ("use strict");
 
-ymaps.ready(init);
+if (typeof ymaps !== "undefined") {
+  ymaps.ready(init);
+}
 
 function init() {
-  // Создание карты.
-  var myMap = new ymaps.Map("map", {
-    center: [55.76, 37.64],
-    // Уровень масштабирования. Допустимые значения:
-    // от 0 (весь мир) до 19.
-    zoom: 7,
-  });
+  if (document.getElementById("map") && typeof ymaps !== "undefined" && ymaps.Map) {
+    var myMap = new ymaps.Map("map", {
+      center: [55.76, 37.64],
+      zoom: 7,
+    });
+  }
 }
 ("use strict");
 
@@ -191,8 +192,8 @@ var prodModalInfo = prodModal.querySelector(".modal-info__wrapper");
 var prodModalDescr = prodModal.querySelector(".modal-prod-descr");
 var prodModalChars = prodModal.querySelector(".prod-chars");
 var prodModalVideo = prodModal.querySelector(".prod-modal__video");
-var prodQuantity = 5;
-var dataLength = null;
+var prodQuantity = (catalogList && catalogList.children.length) ? catalogList.children.length : 6;
+var dataLength = window.PRODUCTS_DATA ? window.PRODUCTS_DATA.length : null;
 var modal = null;
 
 var normalPrice = function normalPrice(str) {
@@ -204,14 +205,99 @@ var prodSlider = new Swiper(".modal-slider__container", {
   spaceBetween: 20,
 });
 
+var getProductsData = function () {
+  if (window.PRODUCTS_DATA) {
+    dataLength = window.PRODUCTS_DATA.length;
+    return Promise.resolve(window.PRODUCTS_DATA);
+  }
+  return fetch("data/data.json")
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      window.PRODUCTS_DATA = data;
+      dataLength = data.length;
+      return data;
+    });
+};
+var price = 0;
+var miniCartList = document.querySelector(".mini-cart__list");
+var fullPrice = document.querySelector(".mini-cart__summ");
+var cartCount = document.querySelector(".cart__count");
+
+var priceWithoutSpaces = function priceWithoutSpaces(str) {
+  return str.replace(/\s/g, "");
+};
+
+var plusFullPrice = function plusFullPrice(currentPrice) {
+  return (price += currentPrice);
+};
+
+var minusFullPrice = function minusFullPrice(currentPrice) {
+  return (price -= currentPrice);
+};
+
+var printFullPrice = function printFullPrice() {
+  if (fullPrice) fullPrice.textContent = "".concat(normalPrice(price), " \u0440");
+};
+
+var printQuantity = function printQuantity(num) {
+  if (cartCount) cartCount.textContent = num;
+};
+
 if (catalogList) {
+  var initProductInteractions = function initProductInteractions() {
+    var productTitle = document.querySelectorAll(".product__title");
+    productTitle.forEach(function (el) {
+      if (typeof $clamp !== "undefined") {
+        $clamp(el, {
+          clamp: "22px",
+        });
+      }
+    });
+    var productsBtns = document.querySelectorAll(".product__btn");
+    productsBtns.forEach(function (el) {
+      el.addEventListener(
+        "focus",
+        function (e) {
+          var parent = e.currentTarget.closest(".product__btns");
+          if (parent) parent.classList.add("product__btns--active");
+        },
+        true
+      );
+      el.addEventListener(
+        "blur",
+        function (e) {
+          var parent = e.currentTarget.closest(".product__btns");
+          if (parent) parent.classList.remove("product__btns--active");
+        },
+        true
+      );
+    });
+    if (typeof cartLogic === "function") {
+      cartLogic();
+    }
+    if (!modal && typeof GraphModal !== "undefined") {
+      modal = new GraphModal({
+        isOpen: function isOpen(m) {
+          if (m.modalContainer.classList.contains("prod-modal")) {
+            var openBtnId = m.previousActiveElement.dataset.id;
+            loadModalData(openBtnId);
+            prodSlider.update();
+          }
+        },
+      });
+    }
+  };
+
   var loadProducts = function loadProducts() {
     var quantity =
-      arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 5;
-    fetch("../data/data.json")
-      .then(function (response) {
-        return response.json();
-      })
+      arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 6;
+    if (catalogList.children.length >= quantity) {
+      initProductInteractions();
+      return;
+    }
+    getProductsData()
       .then(function (data) {
         dataLength = data.length;
         catalogList.innerHTML = "";
@@ -219,14 +305,12 @@ if (catalogList) {
         for (var i = 0; i < dataLength; i++) {
           if (i < quantity) {
             var item = data[i];
-            console.log(item);
+            var imgAttrs = (i === 0) ? ' width="280" height="293" fetchpriority="high"' : ' width="280" height="293" loading="lazy"';
             catalogList.innerHTML +=
               '\n\n              <li class="catalog-list__item">\n                <article class="product">\n                  <div class="product__image">\n                    <img src="'
                 .concat(item.mainImage, '" alt="')
-                .concat(
-                  item.title,
-                  '">\n                    <div class="product__btns">\n                      <button class="btn-reset product__btn" data-graph-path="prod-modal" data-id="'
-                )
+                .concat(item.title, '"')
+                .concat(imgAttrs, '>\n                    <div class="product__btns">\n                      <button class="btn-reset product__btn" data-graph-path="prod-modal" data-id="')
                 .concat(
                   item.id,
                   '" aria-label="\u041F\u043E\u043A\u0430\u0437\u0430\u0442\u044C \u0438\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u044E \u043E \u0442\u043E\u0432\u0430\u0440\u0435">\n                        <svg>\n                          <use xlink:href="img/sprite.svg#eye"></use>\n                        </svg>\n                      </button>\n                      <button class="btn-reset product__btn add-to-cart-btn" data-id="'
@@ -247,56 +331,16 @@ if (catalogList) {
         }
       })
       .then(function () {
-        var productTitle = document.querySelectorAll(".product__title");
-        productTitle.forEach(function (el) {
-          $clamp(el, {
-            clamp: "22px",
-          });
-        });
-        var productsBtns = document.querySelectorAll(".product__btn");
-        productsBtns.forEach(function (el) {
-          console.log(el);
-          el.addEventListener(
-            "focus",
-            function (e) {
-              var parent = e.currentTarget.closest(".product__btns");
-              console.log(parent);
-              parent.classList.add("product__btns--active");
-            },
-            true
-          );
-          el.addEventListener(
-            "blur",
-            function (e) {
-              var parent = e.currentTarget.closest(".product__btns");
-              console.log(parent);
-              parent.classList.remove("product__btns--active");
-            },
-            true
-          );
-        });
-        cartLogic();
-        modal = new GraphModal({
-          isOpen: function isOpen(modal) {
-            if (modal.modalContainer.classList.contains("prod-modal")) {
-              var openBtnId = modal.previousActiveElement.dataset.id;
-              loadModalData(openBtnId);
-              prodSlider.update();
-            }
-          },
-        });
+        initProductInteractions();
       });
   };
 
   loadProducts(prodQuantity);
 
-  var loadModalData = function loadModalData() {
+  function loadModalData() {
     var id =
       arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
-    fetch("../data/data.json")
-      .then(function (response) {
-        return response.json();
-      })
+    getProductsData()
       .then(function (data) {
         prodModalSlider.innerHTML = "";
         prodModalPreview.innerHTML = "";
@@ -436,38 +480,10 @@ if (catalogList) {
   });
 } // работа корзины
 
-var price = 0;
-var miniCartList = document.querySelector(".mini-cart__list");
-var fullPrice = document.querySelector(".mini-cart__summ");
-var cartCount = document.querySelector(".cart__count");
-
-var priceWithoutSpaces = function priceWithoutSpaces(str) {
-  return str.replace(/\s/g, "");
-};
-
-var plusFullPrice = function plusFullPrice(currentPrice) {
-  return (price += currentPrice);
-};
-
-var minusFullPrice = function minusFullPrice(currentPrice) {
-  return (price -= currentPrice);
-};
-
-var printFullPrice = function printFullPrice() {
-  fullPrice.textContent = "".concat(normalPrice(price), " \u0440");
-};
-
-var printQuantity = function printQuantity(num) {
-  cartCount.textContent = num;
-};
-
 var loadCartData = function loadCartData() {
   var id =
     arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
-  fetch("../data/data.json")
-    .then(function (response) {
-      return response.json();
-    })
+  getProductsData()
     .then(function (data) {
       var _iterator2 = _createForOfIteratorHelper(data),
         _step2;
@@ -477,7 +493,6 @@ var loadCartData = function loadCartData() {
           var dataItem = _step2.value;
 
           if (dataItem.id == id) {
-            console.log(dataItem);
             miniCartList.insertAdjacentHTML(
               "afterbegin",
               '\n              <li class="mini-cart__item" data-id="'
@@ -523,7 +538,7 @@ var loadCartData = function loadCartData() {
     });
 };
 
-var cartLogic = function cartLogic() {
+function cartLogic() {
   var productBtn = document.querySelectorAll(".add-to-cart-btn");
   productBtn.forEach(function (el) {
     el.addEventListener("click", function (e) {
@@ -535,7 +550,8 @@ var cartLogic = function cartLogic() {
       e.currentTarget.classList.add("product__btn--disabled");
     });
   });
-  miniCartList.addEventListener("click", function (e) {
+  if (miniCartList) {
+    miniCartList.addEventListener("click", function (e) {
     if (e.target.classList.contains("mini-product__delete")) {
       var self = e.target;
       var parent = self.closest(".mini-cart__item");
@@ -571,6 +587,7 @@ var cartLogic = function cartLogic() {
       printQuantity(num);
     }
   });
+  }
 };
 
 var openOrderModal = document.querySelector(".mini-cart__btn");
@@ -841,7 +858,7 @@ var quizTemplate = function quizTemplate() {
   var nextBtnText = options.nextBtnText;
   var answers = data.answers.map(function (item) {
     if (item.type === "checkbox") {
-      return '\n        <li class="quiz-question__item">\n          <img src="img/sneaker.jpg" alt="">\n          <label class="custom-checkbox quiz-question__label">\n            <input type="'
+      return '\n        <li class="quiz-question__item">\n          <img src="img/sneaker.webp" alt="Кроссовки" width="280" height="120" loading="lazy">\n          <label class="custom-checkbox quiz-question__label">\n            <input type="'
         .concat(
           item.type,
           '" class="custom-checkbox__field quiz-question__answer" data-valid="false" name="'

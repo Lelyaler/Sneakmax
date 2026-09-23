@@ -747,11 +747,10 @@
   overflow: hidden;
   margin-bottom: var(--second-offset);
   border-radius: 4px;
-}
-@media (max-width: 768px) {
-  .team__img {
-    width: 100%;
-  }
+  width: 100%;
+  height: auto;
+  aspect-ratio: 380 / 400;
+  object-fit: cover;
 }
 .team__subtitle {
   display: block;

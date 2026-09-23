@@ -3,17 +3,39 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Интернет-магазин кроссовок SneakMax. Кроссовки известных брендов Nike, Adidas, Puma, Reebok, Converse с доставкой по СНГ по низким ценам."
+    />
     <link
-      rel="shortcut icon"
-      href="https://live.verstaem.online/sneakmax/img/favicon.ico"
-      type="image/x-icon"
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👟</text></svg>"
+      type="image/svg+xml"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <meta name="theme-color" content="#111111" />
-    <title>New site</title>
-    <link rel="stylesheet" href="css/global.css" />
-    <link rel="stylesheet" href="css/vendor.css" />
-    <link rel="stylesheet" href="css/main.css" />
+    <title>SneakMax — кроссовки известных брендов с доставкой по СНГ</title>
+    <link
+      rel="preload"
+      href="fonts/IntroBold.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="fonts/IntroBook.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="./data/images/1/1.webp"
+      as="image"
+      fetchpriority="high"
+    />
+    <link rel="stylesheet" href="css/style.min.css" />
   </head>
 
   <body>
@@ -21,36 +43,36 @@
       <header class="header fix-block">
         <div class="container grid header__container">
           <div class="header__left">
-            <a class="logo header__logo">SneakMax</a>
+            <a href="./" class="logo header__logo" aria-label="SneakMax главная">SneakMax</a>
           </div>
           <div class="header__right">
             <nav class="nav header__nav">
               <ul class="nav__list list-reset">
                 <li class="nav__item">
-                  <a href="index.html#" class="nav__link">Каталог</a>
+                  <a href="#catalog" class="nav__link">Каталог</a>
                 </li>
                 <li class="nav__item">
-                  <a href="index.html#" class="nav__link">О нас</a>
+                  <a href="#about" class="nav__link">О нас</a>
                 </li>
                 <li class="nav__item">
-                  <a href="index.html#" class="nav__link">Подбор товара</a>
+                  <a href="#quiz" class="nav__link">Подбор товара</a>
                 </li>
                 <li class="nav__item">
-                  <a href="index.html#" class="nav__link">Наша команда</a>
+                  <a href="#team" class="nav__link">Наша команда</a>
                 </li>
                 <li class="nav__item">
-                  <a href="index.html#" class="nav__link">Доставка и оплата</a>
+                  <a href="#faq" class="nav__link">Доставка и оплата</a>
                 </li>
                 <li class="nav__item">
-                  <a href="index.html#" class="nav__link">Контакты</a>
+                  <a href="#contacts" class="nav__link">Контакты</a>
                 </li>
               </ul>
             </nav>
-            <button class="burger btn-reset">
+            <button class="burger btn-reset" aria-label="Открыть навигационное меню" aria-expanded="false">
               <span class="burger__line"></span>
             </button>
             <div class="cart header__cart">
-              <button class="btn-reset cart__btn cart__btn--inactive">
+              <button class="btn-reset cart__btn cart__btn--inactive" aria-label="Корзина товаров">
                 <svg>
                   <use xlink:href="img/sprite.svg#cart"></use>
                 </svg>
@@ -95,7 +117,7 @@
           </div>
         </section>
 
-        <section class="catalog">
+        <section class="catalog" id="catalog">
           <div class="container catalog__container">
             <h2 class="title catalog__title">Каталог</h2>
             <div class="catalog__content grid">
@@ -176,30 +198,127 @@
                   <li class="catalog-list__item">
                     <article class="product">
                       <div class="product__image">
-                        <img src="img/product-image.jpg" alt="Продукт 1" />
+                        <img src="./data/images/1/1.webp" alt="Кроссовки Reebok Club C 85" width="280" height="293" fetchpriority="high">
                         <div class="product__btns">
-                          <button
-                            class="btn-reset product__btn"
-                            aria-label="Показать информацию о товаре"
-                          >
+                          <button class="btn-reset product__btn" data-graph-path="prod-modal" data-id="1" aria-label="Показать информацию о товаре">
                             <svg>
                               <use xlink:href="img/sprite.svg#eye"></use>
                             </svg>
                           </button>
-                          <button
-                            class="btn-reset product__btn"
-                            aria-label="Добавить товар в корзину"
-                          >
+                          <button class="btn-reset product__btn add-to-cart-btn" data-id="1" aria-label="Добавить товар в корзину">
                             <svg>
                               <use xlink:href="img/sprite.svg#cart"></use>
                             </svg>
                           </button>
                         </div>
                       </div>
-                      <h3 class="product__title">
-                        Кроссовки Nike Air Force 1 '07 QS
-                      </h3>
+                      <h3 class="product__title">Кроссовки Reebok Club C 85</h3>
+                      <span class="product__price">7 490 р</span>
+                    </article>
+                  </li>
+                  <li class="catalog-list__item">
+                    <article class="product">
+                      <div class="product__image">
+                        <img src="./data/images/2/1.webp" alt="Кроссовки Nike Waffle Trainer 2 SP" width="280" height="293" loading="lazy">
+                        <div class="product__btns">
+                          <button class="btn-reset product__btn" data-graph-path="prod-modal" data-id="2" aria-label="Показать информацию о товаре">
+                            <svg>
+                              <use xlink:href="img/sprite.svg#eye"></use>
+                            </svg>
+                          </button>
+                          <button class="btn-reset product__btn add-to-cart-btn" data-id="2" aria-label="Добавить товар в корзину">
+                            <svg>
+                              <use xlink:href="img/sprite.svg#cart"></use>
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+                      <h3 class="product__title">Кроссовки Nike Waffle Trainer 2 SP</h3>
+                      <span class="product__price">8 500 р</span>
+                    </article>
+                  </li>
+                  <li class="catalog-list__item">
+                    <article class="product">
+                      <div class="product__image">
+                        <img src="./data/images/3/1.webp" alt="Кроссовки adidas Originals Broomfield" width="280" height="293" loading="lazy">
+                        <div class="product__btns">
+                          <button class="btn-reset product__btn" data-graph-path="prod-modal" data-id="3" aria-label="Показать информацию о товаре">
+                            <svg>
+                              <use xlink:href="img/sprite.svg#eye"></use>
+                            </svg>
+                          </button>
+                          <button class="btn-reset product__btn add-to-cart-btn" data-id="3" aria-label="Добавить товар в корзину">
+                            <svg>
+                              <use xlink:href="img/sprite.svg#cart"></use>
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+                      <h3 class="product__title">Кроссовки adidas Originals Broomfield</h3>
+                      <span class="product__price">8 490 р</span>
+                    </article>
+                  </li>
+                  <li class="catalog-list__item">
+                    <article class="product">
+                      <div class="product__image">
+                        <img src="./data/images/4/1.webp" alt="Кроссовки Nike WMNS Lahar Low" width="280" height="293" loading="lazy">
+                        <div class="product__btns">
+                          <button class="btn-reset product__btn" data-graph-path="prod-modal" data-id="4" aria-label="Показать информацию о товаре">
+                            <svg>
+                              <use xlink:href="img/sprite.svg#eye"></use>
+                            </svg>
+                          </button>
+                          <button class="btn-reset product__btn add-to-cart-btn" data-id="4" aria-label="Добавить товар в корзину">
+                            <svg>
+                              <use xlink:href="img/sprite.svg#cart"></use>
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+                      <h3 class="product__title">Кроссовки Nike WMNS Lahar Low</h3>
                       <span class="product__price">11 000 р</span>
+                    </article>
+                  </li>
+                  <li class="catalog-list__item">
+                    <article class="product">
+                      <div class="product__image">
+                        <img src="./data/images/5/1.webp" alt="Кроссовки Nike WMNS Blazer Mid" width="280" height="293" loading="lazy">
+                        <div class="product__btns">
+                          <button class="btn-reset product__btn" data-graph-path="prod-modal" data-id="5" aria-label="Показать информацию о товаре">
+                            <svg>
+                              <use xlink:href="img/sprite.svg#eye"></use>
+                            </svg>
+                          </button>
+                          <button class="btn-reset product__btn add-to-cart-btn" data-id="5" aria-label="Добавить товар в корзину">
+                            <svg>
+                              <use xlink:href="img/sprite.svg#cart"></use>
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+                      <h3 class="product__title">Кроссовки Nike WMNS Blazer Mid</h3>
+                      <span class="product__price">8 490 р</span>
+                    </article>
+                  </li>
+                  <li class="catalog-list__item">
+                    <article class="product">
+                      <div class="product__image">
+                        <img src="./data/images/6/1.webp" alt="Кроссовки Nike Air Force 1" width="280" height="293" loading="lazy">
+                        <div class="product__btns">
+                          <button class="btn-reset product__btn" data-graph-path="prod-modal" data-id="6" aria-label="Показать информацию о товаре">
+                            <svg>
+                              <use xlink:href="img/sprite.svg#eye"></use>
+                            </svg>
+                          </button>
+                          <button class="btn-reset product__btn add-to-cart-btn" data-id="6" aria-label="Добавить товар в корзину">
+                            <svg>
+                              <use xlink:href="img/sprite.svg#cart"></use>
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+                      <h3 class="product__title">Кроссовки Nike Air Force 1</h3>
+                      <span class="product__price">9 990 р</span>
                     </article>
                   </li>
                 </ul>
@@ -211,12 +330,15 @@
           </div>
         </section>
 
-        <section class="about">
+        <section class="about" id="about">
           <img
             src="img/about-figure.svg"
             alt=""
             class="about__figure"
             aria-hidden="true"
+            width="439"
+            height="500"
+            loading="lazy"
           />
           <div class="container about__container">
             <div class="about__text">
@@ -232,12 +354,18 @@
               </p>
             </div>
             <div class="about__image">
-              <img src="img/about.jpg" alt="" aria-hidden="true" />
+              <img
+                src="img/about.webp"
+                alt="О компании SneakMax"
+                width="680"
+                height="580"
+                loading="lazy"
+              />
             </div>
           </div>
         </section>
 
-        <section class="quiz">
+        <section class="quiz" id="quiz">
           <div class="container">
             <h2 class="visually-hidden">Подбор товара - квиз</h2>
             <div class="quiz__content">
@@ -272,7 +400,13 @@
                       Получить
                     </button>
                     <div class="last-question__decorate">
-                      <img src="img/iphone.png" alt="" aria-hidden="true" />
+                      <img
+                        src="img/iphone.webp"
+                        alt="Смартфон с подборкой моделей"
+                        width="211"
+                        height="419"
+                        loading="lazy"
+                      />
                     </div>
                   </div>
                 </div>
@@ -281,66 +415,87 @@
           </div>
         </section>
 
-        <section class="team">
+        <section class="team" id="team">
           <img
             src="img/team-figure.svg"
             alt=""
             class="team__figure"
             aria-hidden="true"
+            width="300"
+            height="300"
+            loading="lazy"
           />
           <div class="container">
             <h2 class="title team__title">Наша команда</h2>
             <ul class="team__list list-reset grid">
               <li class="team__item">
                 <img
-                  src="img/team-1.jpg"
+                  src="img/team-1.webp"
                   alt="Максим Золотарев"
                   class="team__img"
+                  width="380"
+                  height="400"
+                  loading="lazy"
                 />
                 <strong class="team__subtitle">Максим Золотарев</strong>
                 <span class="team__post">Администратор</span>
               </li>
               <li class="team__item">
                 <img
-                  src="img/team-2.jpg"
+                  src="img/team-2.webp"
                   alt="Максим Золотарев"
                   class="team__img"
+                  width="380"
+                  height="400"
+                  loading="lazy"
                 />
                 <strong class="team__subtitle">Максим Золотарев</strong>
                 <span class="team__post">Администратор</span>
               </li>
               <li class="team__item">
                 <img
-                  src="img/team-3.jpg"
+                  src="img/team-3.webp"
                   alt="Максим Золотарев"
                   class="team__img"
+                  width="380"
+                  height="400"
+                  loading="lazy"
                 />
                 <strong class="team__subtitle">Максим Золотарев</strong>
                 <span class="team__post">Администратор</span>
               </li>
               <li class="team__item">
                 <img
-                  src="img/team-4.jpg"
+                  src="img/team-4.webp"
                   alt="Максим Золотарев"
                   class="team__img"
+                  width="380"
+                  height="400"
+                  loading="lazy"
                 />
                 <strong class="team__subtitle">Максим Золотарев</strong>
                 <span class="team__post">Администратор</span>
               </li>
               <li class="team__item">
                 <img
-                  src="img/team-5.jpg"
+                  src="img/team-5.webp"
                   alt="Максим Золотарев"
                   class="team__img"
+                  width="380"
+                  height="400"
+                  loading="lazy"
                 />
                 <strong class="team__subtitle">Максим Золотарев</strong>
                 <span class="team__post">Администратор</span>
               </li>
               <li class="team__item">
                 <img
-                  src="img/team-6.jpg"
+                  src="img/team-6.webp"
                   alt="Максим Золотарев"
                   class="team__img"
+                  width="380"
+                  height="400"
+                  loading="lazy"
                 />
                 <strong class="team__subtitle">Максим Золотарев</strong>
                 <span class="team__post">Администратор</span>
@@ -349,7 +504,7 @@
           </div>
         </section>
 
-        <section class="faq">
+        <section class="faq" id="faq">
           <div class="container faq__container">
             <h2 class="title faq__title">Часто задаваемые вопросы</h2>
             <ul class="faq__list list-reset">
@@ -381,7 +536,7 @@
           </div>
         </section>
 
-        <section class="contacts">
+        <section class="contacts" id="contacts">
           <div class="container contacts__container">
             <div class="contacts__text">
               <h2 class="title contacts__title">Контакты</h2>
@@ -406,14 +561,14 @@
                     </span>
                   </span>
                 </h3>
-                <a href="index.html" class="contacts__phone">+37529 3657888</a>
+                <a href="tel:+375293657888" class="contacts__phone">+37529 3657888</a>
                 <span class="contacts__address"
                   >г. Минск, Комсомольская, 43 к1</span
                 >
               </div>
               <div class="contacts__item">
                 <h3 class="contacts__subtitle">Отдел продаж</h3>
-                <a href="index.html" class="contacts__phone">+37529 2349878</a>
+                <a href="tel:+375292349878" class="contacts__phone">+37529 2349878</a>
                 <span class="contacts__address"
                   >г. Минск, Комсомольская, 43 к1</span
                 >
@@ -435,11 +590,20 @@
                 </li>
               </ul>
             </div>
-            <div class="contacts__map" id="map"></div>
+            <div class="contacts__map" id="map">
+              <iframe
+                src="https://yandex.ru/map-widget/v1/?ll=37.64,55.76&z=7"
+                width="100%"
+                height="100%"
+                frameborder="0"
+                loading="lazy"
+                title="Офис SneakMax на карте"
+              ></iframe>
+            </div>
           </div>
         </section>
 
-        <section class="instagram">
+        <section class="instagram" id="instagram">
           <h2 class="visually-hidden">Форма и инстаграм-лента</h2>
           <div class="container instagram__container">
             <div class="instagram__left">
@@ -472,39 +636,75 @@
               </form>
             </div>
             <div class="instagram__right">
-              <a href="index.html#" class="instagram__link">
-                <img src="img/instagram.png" alt="Лого инстаграма" />
+              <a href="index.html#" class="instagram__link" aria-label="Профиль в Instagram">
+                <img
+                  src="img/instagram.webp"
+                  alt="Логотип Instagram"
+                  width="157"
+                  height="56"
+                  loading="lazy"
+                />
               </a>
               <div class="instagram__content">
                 <article class="instagram__item">
                   <h3 class="instagram__subtitle visually-hidden">
-                    Фото чего-то
+                    Фото кроссовок 1
                   </h3>
-                  <img src="img/insta-1.jpg" alt="Фото из Инстаграма" />
+                  <img
+                    src="img/insta-1.webp"
+                    alt="Фото кроссовок из Instagram 1"
+                    width="565"
+                    height="318"
+                    loading="lazy"
+                  />
                 </article>
                 <article class="instagram__item">
                   <h3 class="instagram__subtitle visually-hidden">
-                    Фото чего-то
+                    Фото кроссовок 2
                   </h3>
-                  <img src="img/insta-2.jpg" alt="Фото из Инстаграма" />
+                  <img
+                    src="img/insta-2.webp"
+                    alt="Фото кроссовок из Instagram 2"
+                    width="157"
+                    height="162"
+                    loading="lazy"
+                  />
                 </article>
                 <article class="instagram__item">
                   <h3 class="instagram__subtitle visually-hidden">
-                    Фото чего-то
+                    Фото кроссовок 3
                   </h3>
-                  <img src="img/insta-3.jpg" alt="Фото из Инстаграма" />
+                  <img
+                    src="img/insta-3.webp"
+                    alt="Фото кроссовок из Instagram 3"
+                    width="600"
+                    height="320"
+                    loading="lazy"
+                  />
                 </article>
                 <article class="instagram__item">
                   <h3 class="instagram__subtitle visually-hidden">
-                    Фото чего-то
+                    Фото кроссовок 4
                   </h3>
-                  <img src="img/insta-4.jpg" alt="Фото из Инстаграма" />
+                  <img
+                    src="img/insta-4.webp"
+                    alt="Фото кроссовок из Instagram 4"
+                    width="275"
+                    height="183"
+                    loading="lazy"
+                  />
                 </article>
                 <article class="instagram__item">
                   <h3 class="instagram__subtitle visually-hidden">
-                    Фото чего-то
+                    Фото кроссовок 5
                   </h3>
-                  <img src="img/insta-5.jpg" alt="Фото из Инстаграма" />
+                  <img
+                    src="img/insta-5.webp"
+                    alt="Фото кроссовок из Instagram 5"
+                    width="600"
+                    height="397"
+                    loading="lazy"
+                  />
                 </article>
               </div>
             </div>
@@ -514,28 +714,28 @@
       <footer class="footer">
         <div class="container footer__container">
           <div class="footer__left">
-            <a class="logo footer__logo">SneakMax</a>
+            <a href="./" class="logo footer__logo" aria-label="SneakMax главная">SneakMax</a>
           </div>
           <div class="footer__right">
             <nav class="nav footer__nav">
               <ul class="nav__list list-reset">
                 <li class="nav__item">
-                  <a href="index.html#" class="nav__link">Каталог</a>
+                  <a href="#catalog" class="nav__link">Каталог</a>
                 </li>
                 <li class="nav__item">
-                  <a href="index.html#" class="nav__link">О нас</a>
+                  <a href="#about" class="nav__link">О нас</a>
                 </li>
                 <li class="nav__item">
-                  <a href="index.html#" class="nav__link">Подбор товара</a>
+                  <a href="#quiz" class="nav__link">Подбор товара</a>
                 </li>
                 <li class="nav__item">
-                  <a href="index.html#" class="nav__link">Наша команда</a>
+                  <a href="#team" class="nav__link">Наша команда</a>
                 </li>
                 <li class="nav__item">
-                  <a href="index.html#" class="nav__link">Доставка и оплата</a>
+                  <a href="#faq" class="nav__link">Доставка и оплата</a>
                 </li>
                 <li class="nav__item">
-                  <a href="index.html#" class="nav__link">Контакты</a>
+                  <a href="#contacts" class="nav__link">Контакты</a>
                 </li>
               </ul>
             </nav>
@@ -560,25 +760,61 @@
                 <div class="modal-slider__container">
                   <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                      <img src="img/product-image.jpg" alt="" />
+                      <img
+                        src="img/product-image.webp"
+                        alt="Кроссовки"
+                        width="280"
+                        height="293"
+                        loading="lazy"
+                      />
                     </div>
                     <div class="swiper-slide">
-                      <img src="img/product-image.jpg" alt="" />
+                      <img
+                        src="img/product-image.webp"
+                        alt="Кроссовки"
+                        width="280"
+                        height="293"
+                        loading="lazy"
+                      />
                     </div>
                     <div class="swiper-slide">
-                      <img src="img/product-image.jpg" alt="" />
+                      <img
+                        src="img/product-image.webp"
+                        alt="Кроссовки"
+                        width="280"
+                        height="293"
+                        loading="lazy"
+                      />
                     </div>
                   </div>
                 </div>
                 <div class="modal-preview">
                   <div class="modal-preview__item" data-index="0">
-                    <img src="img/product-image.jpg" alt="" />
+                    <img
+                      src="img/product-image.webp"
+                      alt="Превью 1"
+                      width="280"
+                      height="293"
+                      loading="lazy"
+                    />
                   </div>
                   <div class="modal-preview__item" data-index="1">
-                    <img src="img/product-image.jpg" alt="" />
+                    <img
+                      src="img/product-image.webp"
+                      alt="Превью 2"
+                      width="280"
+                      height="293"
+                      loading="lazy"
+                    />
                   </div>
                   <div class="modal-preview__item" data-index="2">
-                    <img src="img/product-image.jpg" alt="" />
+                    <img
+                      src="img/product-image.webp"
+                      alt="Превью 3"
+                      width="280"
+                      height="293"
+                      loading="lazy"
+                    />
                   </div>
                 </div>
               </div>
@@ -594,11 +830,11 @@
                     Женские кроссовки Puma Force 1 Shadow
                   </h3>
                   <div class="modal-info__rate">
-                    <img src="img/star.svg" alt="Рейтинг 5 из 5" />
-                    <img src="img/star.svg" alt="" />
-                    <img src="img/star.svg" alt="" />
-                    <img src="img/star.svg" alt="" />
-                    <img src="img/star.svg" alt="" />
+                    <img src="img/star.svg" alt="Рейтинг 5 из 5" width="16" height="16" loading="lazy" />
+                    <img src="img/star.svg" alt="" aria-hidden="true" width="16" height="16" loading="lazy" />
+                    <img src="img/star.svg" alt="" aria-hidden="true" width="16" height="16" loading="lazy" />
+                    <img src="img/star.svg" alt="" aria-hidden="true" width="16" height="16" loading="lazy" />
+                    <img src="img/star.svg" alt="" aria-hidden="true" width="16" height="16" loading="lazy" />
                   </div>
                   <div class="modal-info__sizes">
                     <span class="modal-info__subtitle">Выберите размер</span>
@@ -665,6 +901,8 @@
             <div class="prod-modal__video">
               <iframe
                 src="https://www.youtube.com/embed/HGiDY4NuTaM"
+                title="Видео обзор кроссовок"
+                loading="lazy"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen
               ></iframe>
@@ -708,7 +946,13 @@
                       class="cart-modal-order__product cart-modal-product"
                     >
                       <div class="cart-modal-product__image">
-                        <img src="img/product-image.jpg" alt="" />
+                        <img
+                          src="img/product-image.webp"
+                          alt="Женские кроссовки Puma Force 1 Shadow"
+                          width="280"
+                          height="293"
+                          loading="lazy"
+                        />
                       </div>
                       <div class="cart-modal-product__content">
                         <div class="cart-modal-product__text">
@@ -759,8 +1003,8 @@
         </div>
       </div>
     </div>
-    <script src="js/vendor.js"></script>
-    <script src="https://api-maps.yandex.ru/2.1/?apikey=вашAPI-ключ&lang=ru_RU"></script>
-    <script src="js/main.js"></script>
+    <script>window.PRODUCTS_DATA=[{"id":1,"title":"Кроссовки Reebok Club C 85","price":7490,"mainImage":"./data/images/1/1.webp","gallery":["./data/images/1/1.webp","./data/images/1/2.webp","./data/images/1/3.webp"],"sizes":[8,8.5,9,9.5],"description":"Кроссовки Nike Blazer Mid '77 Vintage Suede с винтажной подошвой возрождают стиль баскетбольных моделей Nike прошлого, создавая впечатление, что они хранились в шкафу долгие годы. ","chars":{"Пол":"Мужское","Цвета":"Разноцветный","Страна":"Вьетнам","Состав":"Кожа, текстиль, резина"},"video":"https://www.youtube.com/embed/d1aMNvKUtx0"},{"id":2,"title":"Кроссовки Nike Waffle Trainer 2 SP","oldPrice":10000,"price":8500,"mainImage":"./data/images/2/1.webp","gallery":["./data/images/2/1.webp","./data/images/2/2.webp","./data/images/2/3.webp"],"sizes":[4,4.5,5,5.5,6,6.5,8],"description":"Кроссовки Nike Blazer Mid '77 Vintage Suede с винтажной подошвой возрождают стиль баскетбольных моделей Nike прошлого, создавая ","chars":{"Страна":"Индонезия","Цвета":"Оранжевый","Состав":"Текстиль, резина"}},{"id":3,"title":"Кроссовки adidas Originals Broomfield","price":8490,"mainImage":"./data/images/3/1.webp","gallery":["./data/images/3/1.webp","./data/images/3/2.webp"],"sizes":[8,10],"description":"Кроссовки Nike Blazer Mid '77 Vintage Suede с винтажной подошвой возрождают стиль баскетбольных моделей Nike прошлого, создавая ","chars":{"Страна":"Вьетнам","Цвета":"Белый","Состав":"Кожа, синтетика, текстиль, резина"}},{"id":4,"title":"Кроссовки Nike WMNS Lahar Low","price":11000,"mainImage":"./data/images/4/1.webp","gallery":["./data/images/4/1.webp","./data/images/4/2.webp","./data/images/4/3.webp","./data/images/4/4.webp","./data/images/4/5.webp"],"sizes":[9.5,11.5,12],"description":"Кроссовки Nike Blazer Mid '77 Vintage Suede с винтажной подошвой возрождают стиль баскетбольных моделей Nike прошлого, создавая ","chars":{"Страна":"Вьетнам","Цвета":"Коричневый","Состав":"Кожа, текстиль, резина"}},{"id":5,"title":"Кроссовки Nike WMNS Blazer Mid","price":8490,"mainImage":"./data/images/5/1.webp","gallery":["./data/images/5/1.webp","./data/images/5/2.webp","./data/images/5/3.webp"],"sizes":[9.5,11.5,12],"description":"WMNS Blazer Mid '77 SE — кроссовки в женской размерной сетке выполнены из натуральной кожи с контрастными swoosh с принтом шкуры леопарда. Модель средней высоты укреплена вставками из натуральной замши и посажена на подошву белого оттенка с зигзагообразным узором протектора.","chars":{"Страна":"Вьетнам","Цвета":"Белый","Состав":"Кожа, текстиль, резина"}},{"id":6,"title":"Кроссовки Nike Air Force 1","price":9990,"mainImage":"./data/images/6/1.webp","gallery":["./data/images/6/1.webp","./data/images/6/2.webp","./data/images/6/3.webp"],"sizes":[9.5,11.5,12],"description":"WMNS Blazer Mid '77 SE — кроссовки в женской размерной сетке выполнены из натуральной кожи с контрастными swoosh с принтом шкуры леопарда. Модель средней высоты укреплена вставками из натуральной замши и посажена на подошву белого оттенка с зигзагообразным узором протектора.","chars":{"Страна":"Вьетнам","Цвета":"Серый","Состав":"Кожа, текстиль, резина"}},{"id":7,"title":"Кроссовки PUMA Suede Teams","price":6990,"mainImage":"./data/images/7/1.webp","gallery":["./data/images/7/1.webp","./data/images/7/2.webp","./data/images/7/3.webp"],"sizes":[8,9.5,13,15],"description":"WMNS Blazer Mid '77 SE — кроссовки в женской размерной сетке выполнены из натуральной кожи с контрастными swoosh с принтом шкуры леопарда. Модель средней высоты укреплена вставками из натуральной замши и посажена на подошву белого оттенка с зигзагообразным узором протектора.","chars":{"Страна":"Румыния","Цвета":"Зеленый","Состав":"Кожа, текстиль, резина"}},{"id":8,"title":"Кроссовки PUMA Ralph Samspon","price":9990,"mainImage":"./data/images/8/1.webp","gallery":["./data/images/8/1.webp","./data/images/8/2.webp","./data/images/8/3.webp"],"sizes":[8,8.5,10,12],"description":"WMNS Blazer Mid '77 SE — кроссовки в женской размерной сетке выполнены из натуральной кожи с контрастными swoosh с принтом шкуры леопарда. Модель средней высоты укреплена вставками из натуральной замши и посажена на подошву белого оттенка с зигзагообразным узором протектора.","chars":{"Страна":"Китай","Цвета":"Белый","Состав":"Кожа, текстиль, резина"}},{"id":9,"title":"Кроссовки Nike Air Force","price":11000,"mainImage":"./data/images/9/1.webp","gallery":["./data/images/9/1.webp","./data/images/9/2.webp","./data/images/9/3.webp","./data/images/9/4.webp"],"sizes":[15],"description":"WMNS Blazer Mid '77 SE — кроссовки в женской размерной сетке выполнены из натуральной кожи с контрастными swoosh с принтом шкуры леопарда. Модель средней высоты укреплена вставками из натуральной замши и посажена на подошву белого оттенка с зигзагообразным узором протектора.","chars":{"Страна":"Вьетнам","Цвета":"Белый / Розовый","Состав":"Кожа, текстиль, резина"}},{"id":10,"title":"Кроссовки Reebok Club C 85","price":7490,"mainImage":"./data/images/1/1.webp","gallery":["./data/images/1/1.webp","./data/images/1/2.webp","./data/images/1/3.webp"],"sizes":[8,8.5,9,9.5],"description":"Кроссовки Nike Blazer Mid '77 Vintage Suede с винтажной подошвой возрождают стиль баскетбольных моделей Nike прошлого, создавая впечатление, что они хранились в шкафу долгие годы. ","chars":{"Пол":"Мужское","Цвета":"Разноцветный","Страна":"Вьетнам","Состав":"Кожа, текстиль, резина"},"video":"https://www.youtube.com/embed/d1aMNvKUtx0"},{"id":11,"title":"Кроссовки Nike Waffle Trainer 2 SP","oldPrice":10000,"price":8500,"mainImage":"./data/images/2/1.webp","gallery":["./data/images/2/1.webp","./data/images/2/2.webp","./data/images/2/3.webp"],"sizes":[4,4.5,5,5.5,6,6.5,8],"description":"Кроссовки Nike Blazer Mid '77 Vintage Suede с винтажной подошвой возрождают стиль баскетбольных моделей Nike прошлого, создавая ","chars":{"Страна":"Индонезия","Цвета":"Оранжевый","Состав":"Текстиль, резина"}}];</script>
+    <script defer src="js/vendor.min.js"></script>
+    <script defer src="js/main.min.js"></script>
   </body>
 </html>

@@ -658,8 +658,15 @@
 }
 .last-question__decorate {
   position: absolute;
-  right: -185px;
-  top: -5px;
+  right: -160px;
+  top: -20px;
+  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.25));
+  pointer-events: none;
+}
+.last-question__decorate img {
+  display: block;
+  max-width: 250px;
+  height: auto;
 }
 @media (max-width: 768px) {
   .last-question__decorate {

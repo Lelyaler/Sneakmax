@@ -66,7 +66,7 @@ if (backToTopBtn) {
   });
 }
 
-// Scroll reveal observer
+// Плавное появление блоков при прокрутке
 if ("IntersectionObserver" in window) {
   var revealObserver = new IntersectionObserver(
     function (entries) {
@@ -166,7 +166,7 @@ accordions.forEach(function (el) {
     var self = e.currentTarget;
     var control = self.querySelector(".faq-accordion__control");
     var content = self.querySelector(".faq-accordion__content");
-    self.classList.toggle("open"); // если открыт аккордеон
+    self.classList.toggle("open"); 
 
     if (self.classList.contains("open")) {
       control.setAttribute("aria-expanded", true);
@@ -383,49 +383,86 @@ if (catalogList) {
     }
   };
 
+  var activeFilter = {
+    minPrice: 0,
+    maxPrice: Infinity,
+    genders: [],
+    sizes: [],
+  };
+
+  var getFilteredProducts = function (data) {
+    return data.filter(function (item) {
+      if (item.price < activeFilter.minPrice || item.price > activeFilter.maxPrice) {
+        return false;
+      }
+      if (activeFilter.genders.length > 0) {
+        var itemGender = item.chars && item.chars["Пол"] ? item.chars["Пол"] : "";
+        var matchGender = activeFilter.genders.some(function (g) {
+          return itemGender === g || itemGender === "Унисекс";
+        });
+        if (!matchGender) return false;
+      }
+      if (activeFilter.sizes.length > 0) {
+        var matchSize = activeFilter.sizes.some(function (s) {
+          return item.sizes && item.sizes.indexOf(s) !== -1;
+        });
+        if (!matchSize) return false;
+      }
+      return true;
+    });
+  };
+
+  var renderProductsList = function (items, quantity) {
+    catalogList.innerHTML = "";
+    if (items.length === 0) {
+      catalogList.innerHTML = '<li class="catalog-list__empty"><p>По заданным параметрам ничего не найдено. Попробуйте сбросить фильтры.</p></li>';
+      if (catalogMore) catalogMore.style.display = "none";
+      return;
+    }
+    var limit = Math.min(items.length, quantity);
+    for (var i = 0; i < limit; i++) {
+      var item = items[i];
+      var imgAttrs = (i === 0) ? ' width="280" height="293" fetchpriority="high"' : ' width="280" height="293" loading="lazy"';
+      catalogList.innerHTML +=
+        '\n\n              <li class="catalog-list__item">\n                <article class="product">\n                  <div class="product__image">\n                    <img src="'
+          .concat(item.mainImage, '" alt="')
+          .concat(item.title, '"')
+          .concat(imgAttrs, '>\n                    <div class="product__btns">\n                      <button class="btn-reset product__btn" data-graph-path="prod-modal" data-id="')
+          .concat(
+            item.id,
+            '" aria-label="\u041F\u043E\u043A\u0430\u0437\u0430\u0442\u044C \u0438\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u044E \u043E \u0442\u043E\u0432\u0430\u0440\u0435">\n                        <svg>\n                          <use xlink:href="img/sprite.svg#eye"></use>\n                        </svg>\n                      </button>\n                      <button class="btn-reset product__btn add-to-cart-btn" data-id="'
+          )
+          .concat(
+            item.id,
+            '" aria-label="\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0442\u043E\u0432\u0430\u0440 \u0432 \u043A\u043E\u0440\u0437\u0438\u043D\u0443">\n                        <svg>\n                          <use xlink:href="img/sprite.svg#cart"></use>\n                        </svg>\n                      </button>\n                    </div>\n                  </div>\n                  <h3 class="product__title">'
+          )
+          .concat(
+            item.title,
+            '</h3>\n                  <span class="product__price">'
+          )
+          .concat(
+            normalPrice(item.price),
+            " \u0440</span>\n                </article>\n              </li>\n\n            "
+          );
+    }
+    if (catalogMore) {
+      if (items.length <= limit) {
+        catalogMore.style.display = "none";
+      } else {
+        catalogMore.style.display = "block";
+      }
+    }
+    initProductInteractions();
+  };
+
   var loadProducts = function loadProducts() {
     var quantity =
       arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 6;
-    if (catalogList.children.length >= quantity) {
-      initProductInteractions();
-      return;
-    }
-    getProductsData()
-      .then(function (data) {
-        dataLength = data.length;
-        catalogList.innerHTML = "";
-
-        for (var i = 0; i < dataLength; i++) {
-          if (i < quantity) {
-            var item = data[i];
-            var imgAttrs = (i === 0) ? ' width="280" height="293" fetchpriority="high"' : ' width="280" height="293" loading="lazy"';
-            catalogList.innerHTML +=
-              '\n\n              <li class="catalog-list__item">\n                <article class="product">\n                  <div class="product__image">\n                    <img src="'
-                .concat(item.mainImage, '" alt="')
-                .concat(item.title, '"')
-                .concat(imgAttrs, '>\n                    <div class="product__btns">\n                      <button class="btn-reset product__btn" data-graph-path="prod-modal" data-id="')
-                .concat(
-                  item.id,
-                  '" aria-label="\u041F\u043E\u043A\u0430\u0437\u0430\u0442\u044C \u0438\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u044E \u043E \u0442\u043E\u0432\u0430\u0440\u0435">\n                        <svg>\n                          <use xlink:href="img/sprite.svg#eye"></use>\n                        </svg>\n                      </button>\n                      <button class="btn-reset product__btn add-to-cart-btn" data-id="'
-                )
-                .concat(
-                  item.id,
-                  '" aria-label="\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0442\u043E\u0432\u0430\u0440 \u0432 \u043A\u043E\u0440\u0437\u0438\u043D\u0443">\n                        <svg>\n                          <use xlink:href="img/sprite.svg#cart"></use>\n                        </svg>\n                      </button>\n                    </div>\n                  </div>\n                  <h3 class="product__title">'
-                )
-                .concat(
-                  item.title,
-                  '</h3>\n                  <span class="product__price">'
-                )
-                .concat(
-                  normalPrice(item.price),
-                  " \u0440</span>\n                </article>\n              </li>\n\n            "
-                );
-          }
-        }
-      })
-      .then(function () {
-        initProductInteractions();
-      });
+    getProductsData().then(function (data) {
+      var filtered = getFilteredProducts(data);
+      dataLength = filtered.length;
+      renderProductsList(filtered, quantity);
+    });
   };
 
   loadProducts(prodQuantity);
@@ -517,7 +554,7 @@ if (catalogList) {
                 prodModalVideo.style.display = "none";
               }
 
-              // Modal sizes selection
+              // Выбор размера в модальном окне
               var sizeBtns = prodModal.querySelectorAll(".modal-sizes__btn");
               if (sizeBtns.length > 0) {
                 sizeBtns[0].classList.add("modal-sizes__btn--active");
@@ -531,7 +568,7 @@ if (catalogList) {
                 });
               });
 
-              // Order button inside modal
+              // Добавление товара из модального окна
               var orderBtn = prodModal.querySelector(".modal-info__order");
               if (orderBtn) {
                 orderBtn.dataset.id = dataItem.id;
@@ -594,14 +631,8 @@ if (catalogList) {
   catalogMore.addEventListener("click", function (e) {
     prodQuantity = prodQuantity + 3;
     loadProducts(prodQuantity);
-
-    if (prodQuantity >= dataLength) {
-      catalogMore.style.display = "none";
-    } else {
-      catalogMore.style.display = "block";
-    }
   });
-} // работа корзины
+}
 
 var loadCartData = function loadCartData() {
   var id =
@@ -1318,7 +1349,7 @@ if (rangeSlider) {
     });
   });
 
-  // Size table click interaction in catalog filters
+  // Выбор размеров в фильтре каталога
   var sizeCells = document.querySelectorAll(".sizes-table td");
   sizeCells.forEach(function (td) {
     td.setAttribute("role", "button");
@@ -1346,6 +1377,12 @@ if (rangeSlider) {
       sizeCells.forEach(function (td) {
         td.classList.remove("active");
       });
+      activeFilter.minPrice = 0;
+      activeFilter.maxPrice = Infinity;
+      activeFilter.genders = [];
+      activeFilter.sizes = [];
+      prodQuantity = 6;
+      loadProducts(prodQuantity);
       showToast("Фильтры сброшены");
     });
   }
@@ -1353,6 +1390,27 @@ if (rangeSlider) {
   var catalogApplyBtn = document.querySelector(".catalog__apply");
   if (catalogApplyBtn) {
     catalogApplyBtn.addEventListener("click", function () {
+      var sliderValues = rangeSlider.noUiSlider.get();
+      activeFilter.minPrice = parseInt(sliderValues[0], 10) || 0;
+      activeFilter.maxPrice = parseInt(sliderValues[1], 10) || Infinity;
+
+      var selectedGenders = [];
+      document
+        .querySelectorAll(".catalog__prop-checkboxes input:checked")
+        .forEach(function (cb) {
+          selectedGenders.push(cb.value);
+        });
+      activeFilter.genders = selectedGenders;
+
+      var selectedSizes = [];
+      document.querySelectorAll(".sizes-table td.active").forEach(function (td) {
+        var sz = parseFloat(td.textContent.trim());
+        if (!isNaN(sz)) selectedSizes.push(sz);
+      });
+      activeFilter.sizes = selectedSizes;
+
+      prodQuantity = 6;
+      loadProducts(prodQuantity);
       showToast("Фильтры применены");
     });
   }

@@ -2104,7 +2104,8 @@
   transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease, background-color 0.2s;
   z-index: 99;
 }
-.back-to-top.visible {
+.back-to-top.visible,
+.back-to-top--visible {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
@@ -2121,7 +2122,8 @@
   transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
-.reveal.revealed {
+.reveal.revealed,
+.reveal--active {
   opacity: 1;
   transform: translateY(0);
 }
@@ -2131,6 +2133,17 @@
     transform: none;
     transition: none;
   }
+}
+
+.catalog-list__empty {
+  grid-column: 1 / -1;
+  padding: 40px 20px;
+  text-align: center;
+  font: var(--middle-book);
+  color: var(--color-jumbo);
+  background: var(--color-white);
+  border-radius: 12px;
+  border: 1px dashed #dcdcdc;
 }
 
 .modal__container {

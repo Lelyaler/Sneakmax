@@ -124,6 +124,19 @@ document.addEventListener("keydown", function (e) {
   if (e.key === "Escape") {
     closeMenu();
     if (miniCart) miniCart.classList.remove("mini-cart--visible");
+    if (prodModalVideo) {
+      prodModalVideo.innerHTML = "";
+      prodModalVideo.style.display = "none";
+    }
+  }
+});
+
+document.addEventListener("click", function (e) {
+  if (e.target.closest(".modal__close") || (e.target.classList.contains("modal") && e.target.classList.contains("is-open"))) {
+    if (prodModalVideo) {
+      prodModalVideo.innerHTML = "";
+      prodModalVideo.style.display = "none";
+    }
   }
 });
 
@@ -166,32 +179,7 @@ accordions.forEach(function (el) {
     }
   });
 });
-// const insta = document.querySelector('.instagram__content');
-// (function () {
-//   new InstagramFeed({
-//     'username': 'max.denaro',
-//     'display_profile': false,
-//     'display_biography': false,
-//     'display_gallery': true,
-//     'display_captions': true,
-//     'callback': function(data){
-//       let instaArray = data.edge_owner_to_timeline_media.edges;
-//       const newArray = instaArray.slice(0, 5);
-//       for (let item of newArray) {
-//         let element = item.node;
-//         insta.insertAdjacentHTML('afterbegin', `
-//           <article class="instagram__item">
-//             <a href="https://www.instagram.com/p/${element.shortcode}/" target="_blank">
-//               <img src="${element.thumbnail_src}"
-//                 alt="${element.accessibility_caption}">
-//             </a>
-//           </article>
-//         `);
-//       }
-//     },
-//     'styling': false
-//   });
-// })();
+
 ("use strict");
 ("use strict");
 
@@ -383,6 +371,12 @@ if (catalogList) {
             var openBtnId = m.previousActiveElement.dataset.id;
             loadModalData(openBtnId);
             prodSlider.update();
+          }
+        },
+        isClose: function isClose(m) {
+          if (prodModalVideo) {
+            prodModalVideo.innerHTML = "";
+            prodModalVideo.style.display = "none";
           }
         },
       });
@@ -752,7 +746,7 @@ orderModalShow.addEventListener("click", function () {
     orderModalList.classList.add("cart-modal-order__list--visible");
     orderModalShow.classList.add("cart-modal-order__show--active");
   }
-}); // ДОДЕЛАТЬ УДАЛЕНИЕ ИЗ МОДАЛКИ
+}); 
 
 orderModalList.addEventListener("click", function (e) {
   if (e.target.classList.contains("mini-product__delete")) {
@@ -773,9 +767,9 @@ orderModalList.addEventListener("click", function (e) {
     document
       .querySelector('.add-to-cart-btn[data-id="'.concat(id, '"]'))
       .classList.remove("product__btn--disabled");
-    parent.style.display = "none"; //setTimeout(() => {
+    parent.style.display = "none"; 
 
-    parent.remove(); //}, 100);
+    parent.remove(); 
 
     document
       .querySelector('.mini-cart__item[data-id="'.concat(id, '"]'))
@@ -1102,62 +1096,53 @@ var Quiz = /*#__PURE__*/ (function () {
                 "block";
             }
           } else {
-            console.log("А все! конец!");
             document.querySelector(".quiz-questions").style.display = "none";
             document.querySelector(".last-question").style.display = "block";
             document.querySelector(".quiz__title").textContent =
               "Ваша подборка готова!";
             document.querySelector(".quiz__descr").textContent =
-              "Оставьте свои контактные данные, чтобы бы мы могли отправить  подготовленный для вас каталог";
-            document
-              .querySelector(".quiz-form")
-              .addEventListener("submit", function (e) {
-                e.preventDefault();
-                quizFormData = new FormData();
+              "Оставьте свои контактные данные, чтобы мы могли отправить подготовленный для вас каталог";
 
-                var _iterator = _createForOfIteratorHelper(_this.resultArray),
-                  _step;
+            var quizForm = document.querySelector(".quiz-form");
+            var quizPhoneInput = quizForm.querySelector('input[name="phone"]');
+            if (quizPhoneInput) {
+              phoneMask.mask(quizPhoneInput);
+            }
 
-                try {
-                  for (_iterator.s(); !(_step = _iterator.n()).done; ) {
-                    var item = _step.value;
+            quizForm.onsubmit = function (e) {
+              e.preventDefault();
+              quizFormData = new FormData(quizForm);
 
-                    for (var obj in item) {
-                      quizFormData.append(
-                        obj,
-                        item[obj].substring(0, item[obj].length - 1)
-                      );
-                    }
+              var _iterator = _createForOfIteratorHelper(_this.resultArray),
+                _step;
+
+              try {
+                for (_iterator.s(); !(_step = _iterator.n()).done; ) {
+                  var item = _step.value;
+
+                  for (var obj in item) {
+                    quizFormData.append(
+                      obj,
+                      item[obj].substring(0, item[obj].length - 1)
+                    );
                   }
-                } catch (err) {
-                  _iterator.e(err);
-                } finally {
-                  _iterator.f();
                 }
+              } catch (err) {
+                _iterator.e(err);
+              } finally {
+                _iterator.f();
+              }
 
+              if (textareaText) {
                 quizFormData.append("textarea", textareaText);
-                var xhr = new XMLHttpRequest();
+              }
 
-                xhr.onreadystatechange = function () {
-                  if (xhr.readyState === 4) {
-                    if (xhr.status === 200) {
-                      console.log("Отправлено");
-                    }
-                  }
-                };
-
-                document
-                  .querySelector(".quiz-form")
-                  .querySelectorAll("input")
-                  .forEach(function (el) {
-                    if (el.value) {
-                      xhr.open("POST", "mail.php", true);
-                      xhr.send(quizFormData);
-                      document.querySelector(".quiz-form").reset();
-                      showToast("Ваш подбор кроссовок принят! Скоро пришлем подборку.");
-                    }
-                  });
-              });
+              var xhr = new XMLHttpRequest();
+              xhr.open("POST", "mail.php", true);
+              xhr.send(quizFormData);
+              quizForm.reset();
+              showToast("Ваш подбор кроссовок принят! Каталог отправлен на почту.");
+            };
           }
         } else {
           console.log("Не валидно!");
@@ -1376,9 +1361,11 @@ if (rangeSlider) {
 
 var styles = getComputedStyle(document.documentElement);
 var colorValue = styles.getPropertyValue("--color-accent");
-var selector = document.querySelector('input[type="tel"]');
-var im = new Inputmask("+7 (999) 999-9999");
-im.mask(selector);
+var telInputs = document.querySelectorAll('input[type="tel"]');
+var phoneMask = new Inputmask("+7 (999) 999-9999");
+telInputs.forEach(function (inp) {
+  phoneMask.mask(inp);
+});
 var productsFormData = null;
 
 var validateForms = function validateForms(

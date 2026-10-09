@@ -18,7 +18,14 @@
   top: 0;
   z-index: 100;
   width: 100%;
-  background-color: var(--color-eastbay);
+  background-color: rgba(0, 64, 50, 0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+.header.header--scrolled {
+  background-color: rgba(0, 48, 38, 0.98);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 .header__container {
   --paddings: 15px;
@@ -487,7 +494,7 @@
   overflow: hidden;
   width: 500px;
   height: 950px;
-  background-color: red;
+  background-color: transparent;
   transform: rotate(15deg);
 }
 .about__image img {
@@ -742,15 +749,25 @@
 }
 .team__item {
   grid-column: 4 span;
+  transition: transform 0.35s ease;
+}
+.team__item:hover {
+  transform: translateY(-6px);
 }
 .team__img {
   overflow: hidden;
   margin-bottom: var(--second-offset);
-  border-radius: 4px;
+  border-radius: 12px;
   width: 100%;
   height: auto;
   aspect-ratio: 380 / 400;
   object-fit: cover;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.team__item:hover .team__img {
+  transform: scale(1.03);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
 }
 .team__subtitle {
   display: block;
@@ -1694,8 +1711,18 @@
 }
 
 .product {
+  position: relative;
   overflow: hidden;
-  border-radius: 4px;
+  border-radius: 12px;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+  padding: 12px;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+}
+.product:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.1);
 }
 .product__btns {
   position: absolute;
@@ -1706,7 +1733,9 @@
   justify-content: center;
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.68);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   opacity: 0;
   transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
 }
@@ -1720,6 +1749,8 @@
   margin-bottom: var(--small-offset);
   width: 100%;
   max-height: 293px;
+  overflow: hidden;
+  border-radius: 8px;
 }
 .product__image img {
   display: block;
@@ -1727,6 +1758,10 @@
   height: 293px;
   -o-object-fit: cover;
   object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.product:hover .product__image img {
+  transform: scale(1.05);
 }
 .product__title {
   margin: 0;
@@ -1737,6 +1772,7 @@
 .product__price {
   font: var(--prehigh-regular);
   color: var(--color-main);
+  font-weight: 700;
 }
 .product__btns--active {
   opacity: 1;
@@ -1746,15 +1782,17 @@
   align-items: center;
   justify-content: center;
   outline: none;
-  border-radius: 100%;
-  width: 20px;
-  height: 20px;
+  border-radius: 50%;
+  width: 46px;
+  height: 46px;
   background-color: var(--color-main);
-  transition: background-color 0.3s ease-in-out;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer;
 }
 .product__btn svg {
-  width: 30px;
-  height: 30px;
+  width: 22px;
+  height: 22px;
   fill: var(--color-white);
   -o-object-fit: cover;
   object-fit: cover;
@@ -1764,10 +1802,13 @@
 }
 @media (min-width: 1025px) {
   .product__btn:hover {
-    background-color: var(--color-main-hover);
+    transform: scale(1.1);
+    background-color: var(--color-accent);
+    box-shadow: 0 6px 18px rgba(217, 50, 50, 0.4);
   }
 }
 .product__btn:active {
+  transform: scale(0.95);
   background-color: var(--color-accent-hover);
 }
 .product__btn:first-child {
@@ -1961,6 +2002,138 @@
 }
 .social__link:active {
   opacity: 0.9;
+}
+
+/* Modern Enhancements */
+.sizes-table td {
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease;
+}
+.sizes-table td:hover {
+  background-color: rgba(68, 75, 88, 0.12);
+  transform: scale(1.05);
+}
+.sizes-table td.active {
+  background-color: var(--color-main);
+  color: var(--color-white);
+  font-weight: 700;
+}
+
+.modal-sizes__btn {
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 6px 14px;
+  font-family: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.modal-sizes__btn:hover,
+.modal-sizes__btn.modal-sizes__btn--active {
+  background-color: var(--color-main);
+  color: #fff;
+  border-color: var(--color-main);
+}
+
+@keyframes cartBounce {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.4); }
+  100% { transform: scale(1); }
+}
+.cart__count.bump {
+  animation: cartBounce 0.35s ease;
+}
+
+.mini-cart__empty {
+  padding: 30px 15px;
+  text-align: center;
+  font: var(--middle-book);
+  color: var(--color-jumbo);
+}
+
+.toast-msg {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translate(-50%, 24px);
+  background: #111827;
+  color: #fff;
+  padding: 14px 26px;
+  border-radius: 10px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  font-size: 15px;
+  font-weight: 500;
+  z-index: 2500;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  max-width: 90%;
+  text-align: center;
+}
+.toast-msg.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.back-to-top {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(217, 50, 50, 0.38);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(16px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease, background-color 0.2s;
+  z-index: 99;
+}
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.back-to-top:hover {
+  background: var(--color-accent-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(217, 50, 50, 0.48);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+.modal__container {
+  border-radius: 14px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+.modal {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 /*# sourceMappingURL=main.css.map */

@@ -20,18 +20,21 @@
     />
     <link
       rel="preload"
-      href="fonts/IntroBook.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
+      href="img/hero-sneaker-1-mob.webp?v=3"
+      as="image"
+      type="image/webp"
+      media="(max-width: 767px)"
+      fetchpriority="high"
     />
     <link
       rel="preload"
-      href="./data/images/1/1.webp"
+      href="img/hero-sneaker-1.webp?v=3"
       as="image"
+      type="image/webp"
+      media="(min-width: 768px)"
       fetchpriority="high"
     />
-    <link rel="stylesheet" href="css/style.min.css?v=11" />
+    <link rel="stylesheet" href="css/style.min.css?v=12" />
   </head>
 
   <body>
@@ -42,7 +45,7 @@
             <a href="./" class="logo header__logo" aria-label="SneakMax главная">SneakMax</a>
           </div>
           <div class="header__right">
-            <nav class="nav header__nav">
+            <nav class="nav header__nav" id="headerNav" aria-label="Основная навигация">
               <ul class="nav__list list-reset">
                 <li class="nav__item">
                   <a href="#catalog" class="nav__link">Каталог</a>
@@ -64,7 +67,7 @@
                 </li>
               </ul>
             </nav>
-            <button class="burger btn-reset" aria-label="Открыть навигационное меню" aria-expanded="false">
+            <button class="burger btn-reset" aria-label="Открыть навигационное меню" aria-expanded="false" aria-controls="headerNav">
               <span class="burger__line"></span>
             </button>
             <div class="cart header__cart">
@@ -99,14 +102,14 @@
       <main class="main">
         <section class="hero">
           <div class="hero__slider" aria-hidden="true">
-            <div class="hero__slide hero__slide--active" style="background-image: url('img/hero-sneaker-1.webp?v=2');"></div>
-            <div class="hero__slide" style="background-image: url('img/hero-sneaker-2.webp?v=2');"></div>
-            <div class="hero__slide" style="background-image: url('img/hero-sneaker-3.webp?v=2');"></div>
-            <div class="hero__slide" style="background-image: url('img/hero-sneaker-4.webp?v=2');"></div>
-            <div class="hero__slide" style="background-image: url('img/hero-sneaker-5.webp?v=2');"></div>
-            <div class="hero__slide" style="background-image: url('img/hero-sneaker-6.webp?v=2');"></div>
-            <div class="hero__slide" style="background-image: url('img/hero-sneaker-7.webp?v=2');"></div>
-            <div class="hero__slide" style="background-image: url('img/hero-sneaker-8.webp?v=2');"></div>
+            <div class="hero__slide hero__slide--1 hero__slide--active"></div>
+            <div class="hero__slide hero__slide--2"></div>
+            <div class="hero__slide hero__slide--3"></div>
+            <div class="hero__slide hero__slide--4"></div>
+            <div class="hero__slide hero__slide--5"></div>
+            <div class="hero__slide hero__slide--6"></div>
+            <div class="hero__slide hero__slide--7"></div>
+            <div class="hero__slide hero__slide--8"></div>
           </div>
           <div class="hero__overlay" aria-hidden="true"></div>
           <div class="container hero__container">
@@ -195,11 +198,15 @@
                           type="text"
                           class="catalog-price__input"
                           id="input-0"
+                          aria-label="Минимальная цена, ₽"
+                          placeholder="500"
                         />
                         <input
                           type="text"
                           class="catalog-price__input"
                           id="input-1"
+                          aria-label="Максимальная цена, ₽"
+                          placeholder="999 999"
                         />
                       </div>
                       <div
@@ -212,11 +219,11 @@
                     <strong class="catalog__caption">Пол</strong>
                     <div class="catalog__prop-inner catalog__prop-checkboxes">
                       <label class="custom-checkbox">
-                        <input type="checkbox" class="custom-checkbox__field" value="Мужской" />
+                        <input type="checkbox" class="custom-checkbox__field" value="Мужской" aria-label="Мужской пол" />
                         <span class="custom-checkbox__content">Мужской</span>
                       </label>
                       <label class="custom-checkbox">
-                        <input type="checkbox" class="custom-checkbox__field" value="Женский" />
+                        <input type="checkbox" class="custom-checkbox__field" value="Женский" aria-label="Женский пол" />
                         <span class="custom-checkbox__content">Женский</span>
                       </label>
                     </div>
@@ -224,7 +231,7 @@
                   <div class="catalog__prop">
                     <strong class="catalog__caption">Размер</strong>
                     <div class="catalog__prop-inner">
-                      <table class="sizes-table">
+                      <table class="sizes-table" role="presentation">
                         <caption>
                           Таблица размеров
                         </caption>
@@ -464,6 +471,7 @@
                       name="name"
                       class="input last-question__input"
                       placeholder="Ваше имя"
+                      aria-label="Ваше имя"
                       required
                     />
                     <input
@@ -471,6 +479,7 @@
                       name="email"
                       class="input last-question__input"
                       placeholder="E-mail"
+                      aria-label="Ваш e-mail"
                       required
                     />
                     <input
@@ -478,6 +487,7 @@
                       name="phone"
                       class="input last-question__input"
                       placeholder="Номер телефона"
+                      aria-label="Номер телефона"
                       required
                     />
                     <button
@@ -742,6 +752,7 @@
                     type="text"
                     class="input instagram__input"
                     placeholder="Ваше имя"
+                    aria-label="Ваше имя"
                     name="name"
                     data-validate-field="name"
                   />
@@ -751,6 +762,7 @@
                     type="tel"
                     class="input instagram__input"
                     placeholder="Номер телефона"
+                    aria-label="Номер телефона"
                     name="phone"
                     data-validate-field="phone"
                   />
@@ -842,7 +854,7 @@
             <a href="./" class="logo footer__logo" aria-label="SneakMax главная">SneakMax</a>
           </div>
           <div class="footer__right">
-            <nav class="nav footer__nav">
+            <nav class="nav footer__nav" aria-label="Меню в подвале">
               <ul class="nav__list list-reset">
                 <li class="nav__item">
                   <a href="#catalog" class="nav__link">Каталог</a>
@@ -873,6 +885,7 @@
           class="modal__container prod-modal"
           role="dialog"
           aria-modal="true"
+          aria-labelledby="prodModalTitle"
           data-graph-target="prod-modal"
         >
           <button
@@ -951,7 +964,7 @@
                   >
                 </div>
                 <div class="modal-info__wrapper">
-                  <h3 class="modal-info__title">
+                  <h3 class="modal-info__title" id="prodModalTitle">
                     Женские кроссовки Puma Force 1 Shadow
                   </h3>
                   <div class="modal-info__rate">
@@ -1023,21 +1036,14 @@
                 </div>
               </div>
             </div>
-            <div class="prod-modal__video">
-              <iframe
-                src="https://www.youtube.com/embed/HGiDY4NuTaM"
-                title="Видео обзор кроссовок"
-                loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-              ></iframe>
-            </div>
+            <div class="prod-modal__video" style="display: none;"></div>
           </div>
         </div>
         <div
           class="modal__container cart-modal"
           role="dialog"
           aria-modal="true"
+          aria-labelledby="cartModalTitle"
           data-graph-target="cart-modal"
         >
           <button
@@ -1046,7 +1052,7 @@
           ></button>
           <div class="modal-content">
             <div class="cart-modal__top">
-              <h2 class="cart-modal__title">Оформление заказа</h2>
+              <h2 class="cart-modal__title" id="cartModalTitle">Оформление заказа</h2>
               <span class="cart-modal__order-number">Заказ 345667</span>
             </div>
             <div class="cart-modal-order">
@@ -1104,6 +1110,7 @@
                 class="input cart-modal__input"
                 name="name"
                 placeholder="Ваше имя"
+                aria-label="Ваше имя"
                 data-validate-field="name"
               />
               <input
@@ -1111,6 +1118,7 @@
                 class="input cart-modal__input"
                 name="tel"
                 placeholder="Номер телефона"
+                aria-label="Номер телефона"
                 data-validate-field="phone"
               />
               <input
@@ -1118,6 +1126,7 @@
                 class="input cart-modal__input"
                 name="email"
                 placeholder="E-mail"
+                aria-label="Ваш e-mail"
                 data-validate-field="email"
               />
               <button class="btn-reset btn btn--primary cart-modal__btn">
@@ -1135,7 +1144,7 @@
     </button>
     <div class="toast-msg" id="toastMsg" role="status" aria-live="polite"></div>
     <script>window.PRODUCTS_DATA=[{"id": 1, "title": "Кроссовки Reebok Club C 85", "price": 7490, "mainImage": "./data/images/1/1.webp", "gallery": ["./data/images/1/1.webp", "./data/images/1/2.webp", "./data/images/1/3.webp"], "sizes": [39, 40, 41, 42, 43], "description": "Кроссовки Reebok Club C 85 — культовая теннисная классика 1985 года. Мягкий кожаный верх обеспечивает комфортную посадку, а прочная резиновая подошва гарантирует надежное сцепление на каждый день.", "chars": {"Пол": "Мужской", "Цвета": "Белый / Синий", "Страна": "Вьетнам", "Состав": "Натуральная кожа, текстиль, резина"}}, {"id": 2, "title": "Кроссовки Nike Waffle Trainer 2 SP", "oldPrice": 10000, "price": 8500, "mainImage": "./data/images/2/1.webp", "gallery": ["./data/images/2/1.webp", "./data/images/2/2.webp", "./data/images/2/3.webp"], "sizes": [36, 37, 38, 39, 40, 41, 42], "description": "Винтажный беговой силуэт с легендарной вафельной подошвой. Сочетание замши и нейлона придает ретро-эстетику, а упругая промежуточная подошва дарит комфорт при длительной ходьбе.", "chars": {"Страна": "Индонезия", "Цвета": "Оранжевый", "Состав": "Замша, текстиль, резина", "Пол": "Унисекс"}}, {"id": 3, "title": "Кроссовки adidas Originals Broomfield", "price": 8490, "mainImage": "./data/images/3/1.webp", "gallery": ["./data/images/3/1.webp", "./data/images/3/2.webp"], "sizes": [36, 37, 38, 39, 40, 41, 42], "description": "Модель в эстетике террасной культуры с лаконичным силуэтом. Верх из высококачественной замши с фирменными тремя полосками и золотистым тиснением названия модели.", "chars": {"Страна": "Вьетнам", "Цвета": "Светло-серый / Белый", "Состав": "Натуральная замша, кожа, резина", "Пол": "Унисекс"}}, {"id": 4, "title": "Кроссовки Nike WMNS Lahar Low", "price": 11000, "oldPrice": 13500, "mainImage": "./data/images/4/1.webp", "gallery": ["./data/images/4/1.webp", "./data/images/4/2.webp", "./data/images/4/3.webp", "./data/images/4/4.webp", "./data/images/4/5.webp"], "sizes": [35, 36, 37, 38, 39, 40], "description": "Созданные для городских улиц и хайкинга, Lahar Low воплощают надежность ботинок 1989 года. Плотная кожа, усиленная шнуровка и глубокий рельефный протектор защитят в любую погоду.", "chars": {"Страна": "Вьетнам", "Цвета": "Коричневый / Черный", "Состав": "Плотная кожа, текстиль, прочная резина", "Пол": "Женский"}}, {"id": 5, "title": "Кроссовки Nike WMNS Blazer Mid", "price": 8490, "mainImage": "./data/images/5/1.webp", "gallery": ["./data/images/5/1.webp", "./data/images/5/2.webp", "./data/images/5/3.webp"], "sizes": [35, 36, 37, 38, 39, 40], "description": "WMNS Blazer Mid 77 SE — легендарный баскетбольный силуэт с акцентными деталями. Высокий воротник фиксирует голеностоп, а винтажная обработка подошвы придает аутентичный стиль.", "chars": {"Страна": "Вьетнам", "Цвета": "Белый", "Состав": "Кожа, замша, текстиль, резина", "Пол": "Женский"}}, {"id": 6, "title": "Кроссовки Nike Air Force 1", "price": 9990, "mainImage": "./data/images/6/1.webp", "gallery": ["./data/images/6/1.webp", "./data/images/6/2.webp", "./data/images/6/3.webp"], "sizes": [39, 40, 41, 42, 43], "description": "Нестареющая классика уличной моды. Прочный кожаный верх, амортизирующая капсула Nike Air в подошве и перфорация для воздухопроницаемости делают Air Force 1 незаменимой базой гардероба.", "chars": {"Страна": "Вьетнам", "Цвета": "Белый", "Состав": "Натуральная кожа, текстиль, резина", "Пол": "Мужской"}}, {"id": 7, "title": "Кроссовки PUMA Suede Teams", "price": 6990, "oldPrice": 8990, "mainImage": "./data/images/7/1.webp", "gallery": ["./data/images/7/1.webp", "./data/images/7/2.webp", "./data/images/7/3.webp"], "sizes": [39, 40, 41, 42, 43], "description": "Культовый замшевый силуэт, остающийся символом брейкданса и хип-хопа с 1968 года. Бархатистый верх, контрастная полоса PUMA Formstrip и цепкая резиновая подошва.", "chars": {"Страна": "Индонезия", "Цвета": "Синий / Белый", "Состав": "Натуральная замша, текстиль, резина", "Пол": "Мужской"}}, {"id": 8, "title": "Кроссовки PUMA Ralph Sampson Low", "price": 9990, "oldPrice": 12000, "mainImage": "./data/images/8/1.webp", "gallery": ["./data/images/8/1.webp", "./data/images/8/2.webp", "./data/images/8/3.webp"], "sizes": [36, 37, 38, 39, 40, 41, 42], "description": "Баскетбольная классика в честь члена Зала славы НБА Ральфа Сэмпсона. Чистый минималистичный дизайн из гладкой кожи с золотистым автографом легенды на боковой панели.", "chars": {"Страна": "Китай", "Цвета": "Белый", "Состав": "Кожа, текстиль, резина", "Пол": "Мужской"}}, {"id": 9, "title": "Кроссовки Nike Air Force 1 Shadow", "price": 11000, "oldPrice": 12900, "mainImage": "./data/images/9/1.webp", "gallery": ["./data/images/9/1.webp", "./data/images/9/2.webp", "./data/images/9/3.webp", "./data/images/9/4.webp"], "sizes": [35, 36, 37, 38, 39, 40], "description": "Игривое переосмысление классики: двойные элементы брендинга, два люверса для шнуровки и увеличенная промежуточная подошва подчеркивают ДНК Air Force 1.", "chars": {"Страна": "Вьетнам", "Цвета": "Белый / Розовый", "Состав": "Кожа, текстиль, пеноматериал, резина", "Пол": "Женский"}}, {"id": 10, "title": "Кроссовки adidas Originals Continental 80", "price": 8990, "oldPrice": 10500, "mainImage": "./data/images/10/1.webp", "gallery": ["./data/images/10/1.webp", "./data/images/10/2.webp"], "sizes": [36, 37, 38, 39, 40, 41, 42], "description": "Ретро-кроссовки в стиле фитнес-эстетики 80-х годов. Двухцветная красно-синяя полоса на боковой стороне и раздельная резиновая подошва cupsole обеспечивают мягкость и гибкость шага.", "chars": {"Пол": "Унисекс", "Цвета": "Белый / Красный / Синий", "Страна": "Индонезия", "Состав": "Натуральная кожа, текстиль, резина"}}, {"id": 11, "title": "Кроссовки Converse Chuck 70 Classic", "oldPrice": 9500, "price": 7990, "mainImage": "./data/images/11/1.webp", "gallery": ["./data/images/11/1.webp", "./data/images/11/2.webp"], "sizes": [36, 37, 38, 39, 40, 41, 42], "description": "Премиальная версия культовых Chuck Taylor 1970 года. Плотный хлопковый канвас 340г, стелька OrthoLite с улучшенной амортизацией и винтажная глянцевая подошва цвета экру.", "chars": {"Страна": "Вьетнам", "Цвета": "Черный / Белый", "Состав": "Плотный текстиль, парусина, вулканизированная резина", "Пол": "Унисекс"}}, {"id": 12, "title": "Кроссовки New Balance 990v5 Core", "oldPrice": 17990, "price": 14990, "mainImage": "./data/images/12/1.webp", "gallery": ["./data/images/12/1.webp", "./data/images/12/2.webp"], "sizes": [39, 40, 41, 42, 43], "description": "Легендарный силуэт серии 990. Премиальная серая замша pigskin, дышащая сетка, технология ENCAP с полиуретановым кантом и вставка Ortholite для непревзойденного комфорта.", "chars": {"Пол": "Мужской", "Цвета": "Серый / Графит", "Страна": "США", "Состав": "Натуральная замша, сетка, полиуретан, резина Ndurance"}}, {"id": 13, "title": "Кроссовки New Balance 2002R Protection Pack", "oldPrice": 17500, "price": 14990, "mainImage": "./data/images/13/1.webp", "gallery": ["./data/images/13/1.webp", "./data/images/13/2.webp"], "sizes": [39, 40, 41, 42, 43], "description": "Деконструированная версия бегового силуэта 2002 года с рваными накладками из премиальной замши Rain Cloud. Амортизирующая подошва N-ergy и технология Stability Web.", "chars": {"Страна": "Вьетнам", "Цвета": "Серый / Rain Cloud", "Состав": "Премиальная замша, дышащая сетка, резина N-ergy", "Пол": "Унисекс"}}, {"id": 14, "title": "Кроссовки Nike Dunk Low Retro", "oldPrice": 13000, "price": 11490, "mainImage": "./data/images/14/1.webp", "gallery": ["./data/images/14/1.webp", "./data/images/14/2.webp"], "sizes": [36, 37, 38, 39, 40, 41, 42], "description": "Культовый силуэт 1985 года в популярнейшей расцветке Panda. Мягкий кожаный воротник, перфорация на мыске и цепкая плоская подошва для катания и повседневной носки.", "chars": {"Страна": "Вьетнам", "Цвета": "Черный / Белый (Panda)", "Состав": "Натуральная кожа, текстиль, вулканизированная резина", "Пол": "Унисекс"}}, {"id": 15, "title": "Кроссовки Asics GEL-Kayano 14", "oldPrice": 15900, "price": 13990, "mainImage": "./data/images/15/1.webp", "gallery": ["./data/images/15/1.webp", "./data/images/15/2.webp"], "sizes": [39, 40, 41, 42, 43], "description": "Ретро-раннер 2008 года с видимыми вставками технологии GEL в пяточной и носочной частях. Футуристичный дизайн с металлизированными накладками и дышащей открытой сеткой.", "chars": {"Страна": "Индонезия", "Цвета": "Серебристый / Белый / Черный", "Состав": "Синтетическая кожа, открытая сетка, вставки GEL, резина", "Пол": "Унисекс"}}, {"id": 16, "title": "Кроссовки Salomon XT-6 Advanced", "oldPrice": 18900, "price": 16990, "mainImage": "./data/images/16/1.webp", "gallery": ["./data/images/16/1.webp", "./data/images/16/2.webp"], "sizes": [39, 40, 41, 42, 43], "description": "Легендарная трейловая модель с системой быстрой шнуровки Quicklace и шасси ACS (Agile Chassis System). Превосходная стабильность и сцепление Contagrip на любой поверхности.", "chars": {"Страна": "Китай", "Цвета": "Черный / Мокрый асфальт", "Состав": "Износостойкий TPU, рипстоп текстиль, подметка Contagrip", "Пол": "Мужской"}}, {"id": 17, "title": "Кроссовки adidas Originals Samba OG", "oldPrice": 12500, "price": 10990, "mainImage": "./data/images/17/1.webp", "gallery": ["./data/images/17/1.webp", "./data/images/17/2.webp"], "sizes": [36, 37, 38, 39, 40, 41, 42], "description": "Классика уличной моды с T-образным мыском из замши и культовой медовой подошвой из резины gum sole. Золотое тиснение Samba и фирменные зазубренные полоски Trefoil.", "chars": {"Страна": "Вьетнам", "Цвета": "Белый / Черный / Gum", "Состав": "Гладкая кожа, натуральная замша, полиуретан, натуральный каучук", "Пол": "Унисекс"}}, {"id": 18, "title": "Кроссовки Nike Air Jordan 1 Low UNC", "oldPrice": 14500, "price": 12990, "mainImage": "./data/images/18/1.webp", "gallery": ["./data/images/18/1.webp", "./data/images/18/2.webp"], "sizes": [39, 40, 41, 42, 43], "description": "Низкая версия культового силуэта в легендарной расцветке University of North Carolina. Логотип Wings на пятке, скрытая амортизирующая капсула Air-Sole в подошве.", "chars": {"Страна": "Вьетнам", "Цвета": "Белый / Голубой UNC", "Состав": "Натуральная кожа, текстиль, подушка Air-Sole, резина", "Пол": "Мужской"}}, {"id": 19, "title": "Кроссовки Air Jordan 1 High OG Chicago", "oldPrice": 22000, "price": 18990, "mainImage": "./data/images/19/1.webp", "gallery": ["./data/images/19/1.webp", "./data/images/19/2.webp"], "sizes": [39, 40, 41, 42, 43], "description": "Оригинальный высокий силуэт 1985 года в культовых цветах Chicago Bulls: Varsity Red, White и Black. Высокий воротник, фиксация голеностопа и премиальная кожа.", "chars": {"Страна": "Вьетнам", "Цвета": "Красный / Белый / Черный", "Состав": "Натуральная кожа, текстиль, подушка Air-Sole, резина", "Пол": "Мужской"}}, {"id": 20, "title": "Кроссовки Travis Scott x Air Jordan 1 Low", "oldPrice": 28000, "price": 24990, "mainImage": "./data/images/20/1.webp", "gallery": ["./data/images/20/1.webp", "./data/images/20/2.webp"], "sizes": [39, 40, 41, 42, 43], "description": "Коллаборация с Трэвисом Скоттом в расцветке Reverse Mocha. Фирменный перевернутый Swoosh, замша премиального качества оттенка мокко, кремовая кожа и вышивка Cactus Jack.", "chars": {"Страна": "Вьетнам", "Цвета": "Мокко / Парусный / Белый", "Состав": "Премиальная замша, кожа nappa, текстиль, резина", "Пол": "Унисекс"}}];</script>
-    <script defer src="js/vendor.min.js?v=10"></script>
-    <script defer src="js/main.min.js?v=10"></script>
+    <script defer src="js/vendor.min.js?v=11"></script>
+    <script defer src="js/main.min.js?v=11"></script>
   </body>
 </html>

@@ -112,6 +112,16 @@ if (burger) {
       enableScroll();
     }
   });
+
+  document.addEventListener("click", function (e) {
+    if (
+      burger.classList.contains("burger--active") &&
+      !e.target.closest(".header__nav") &&
+      !e.target.closest(".burger")
+    ) {
+      closeMenu();
+    }
+  });
 }
 
 document.querySelectorAll(".nav__link").forEach(function (link) {
@@ -334,14 +344,6 @@ var printQuantity = function printQuantity(num) {
 
 if (catalogList) {
   var initProductInteractions = function initProductInteractions() {
-    var productTitle = document.querySelectorAll(".product__title");
-    productTitle.forEach(function (el) {
-      if (typeof $clamp !== "undefined") {
-        $clamp(el, {
-          clamp: "22px",
-        });
-      }
-    });
     var productsBtns = document.querySelectorAll(".product__btn");
     productsBtns.forEach(function (el) {
       el.addEventListener(
@@ -1378,13 +1380,17 @@ if (rangeSlider) {
   sizeCells.forEach(function (td) {
     td.setAttribute("role", "button");
     td.setAttribute("tabindex", "0");
+    td.setAttribute("aria-label", "Размер " + td.textContent.trim());
+    td.setAttribute("aria-pressed", "false");
     td.addEventListener("click", function () {
-      td.classList.toggle("active");
+      var isAct = td.classList.toggle("active");
+      td.setAttribute("aria-pressed", isAct ? "true" : "false");
     });
     td.addEventListener("keydown", function (e) {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
-        td.classList.toggle("active");
+        var isAct = td.classList.toggle("active");
+        td.setAttribute("aria-pressed", isAct ? "true" : "false");
       }
     });
   });
@@ -1400,6 +1406,7 @@ if (rangeSlider) {
         });
       sizeCells.forEach(function (td) {
         td.classList.remove("active");
+        td.setAttribute("aria-pressed", "false");
       });
       activeFilter.minPrice = 0;
       activeFilter.maxPrice = Infinity;

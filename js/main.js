@@ -1594,4 +1594,15 @@ validateForms(
  * @returns {number}
  */
 ("use strict");
+// Hero banner sneakers rotation
+(function () {
+  var heroSlides = document.querySelectorAll(".hero__slide");
+  if (!heroSlides || heroSlides.length < 2) return;
+  var currentHeroIndex = 0;
+  setInterval(function () {
+    heroSlides[currentHeroIndex].classList.remove("hero__slide--active");
+    currentHeroIndex = (currentHeroIndex + 1) % heroSlides.length;
+    heroSlides[currentHeroIndex].classList.add("hero__slide--active");
+  }, 4000);
+})();
 //# sourceMappingURL=main.js.map

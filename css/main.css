@@ -170,18 +170,39 @@
   position: relative;
   padding: 80px 0 50px;
   background-color: var(--color-eastbay);
-  background-image: linear-gradient(
-      to right,
-      rgba(24, 29, 38, 0.98) 0%,
-      rgba(24, 29, 38, 0.92) 50%,
-      rgba(24, 29, 38, 0.6) 80%,
-      rgba(24, 29, 38, 0.3) 100%
-    ),
-    url("../img/hero-sneaker.webp");
+  overflow: hidden;
+}
+.hero__slider {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.hero__slide {
+  position: absolute;
+  inset: 0;
   background-repeat: no-repeat;
   background-position: center right;
   background-size: cover;
-  overflow: hidden;
+  opacity: 0;
+  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity;
+}
+.hero__slide--active {
+  opacity: 1;
+}
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    to right,
+    rgba(24, 29, 38, 0.98) 0%,
+    rgba(24, 29, 38, 0.92) 50%,
+    rgba(24, 29, 38, 0.6) 80%,
+    rgba(24, 29, 38, 0.3) 100%
+  );
 }
 .hero__container {
   position: relative;
@@ -293,14 +314,15 @@
   .hero {
     padding: 120px 0 60px;
     min-height: 540px;
-    background-image: linear-gradient(
-        to right,
-        rgba(24, 29, 38, 1) 0%,
-        rgba(24, 29, 38, 0.94) 42%,
-        rgba(24, 29, 38, 0.45) 75%,
-        rgba(24, 29, 38, 0.15) 100%
-      ),
-      url("../img/hero-sneaker.webp");
+  }
+  .hero__overlay {
+    background: linear-gradient(
+      to right,
+      rgba(24, 29, 38, 1) 0%,
+      rgba(24, 29, 38, 0.94) 42%,
+      rgba(24, 29, 38, 0.45) 75%,
+      rgba(24, 29, 38, 0.15) 100%
+    );
   }
   .hero__title {
     max-width: 580px;
@@ -320,14 +342,15 @@
 @media (min-width: 1200px) {
   .hero {
     min-height: 580px;
-    background-image: linear-gradient(
-        to right,
-        rgba(24, 29, 38, 1) 0%,
-        rgba(24, 29, 38, 0.9) 45%,
-        rgba(24, 29, 38, 0.35) 75%,
-        rgba(24, 29, 38, 0.1) 100%
-      ),
-      url("../img/hero-sneaker.webp");
+  }
+  .hero__overlay {
+    background: linear-gradient(
+      to right,
+      rgba(24, 29, 38, 1) 0%,
+      rgba(24, 29, 38, 0.9) 45%,
+      rgba(24, 29, 38, 0.35) 75%,
+      rgba(24, 29, 38, 0.1) 100%
+    );
   }
 }
 

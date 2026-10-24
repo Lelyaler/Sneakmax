@@ -31,7 +31,7 @@
       as="image"
       fetchpriority="high"
     />
-    <link rel="stylesheet" href="css/style.min.css?v=2" />
+    <link rel="stylesheet" href="css/style.min.css?v=3" />
   </head>
 
   <body>
@@ -100,22 +100,106 @@
         <section class="hero">
           <span class="hero__bg-text" aria-hidden="true">SneakMax</span>
           <div class="container hero__container">
-            <h1 class="hero__title">
-              Кроссовки известных брендов с&nbsp;доставкой по&nbsp;СНГ
-            </h1>
-            <p class="hero__descr">
-              Мы&nbsp;продаем кроссовки брендов Nike, Adidas, Puma, Reebok,
-              Converse и&nbsp;многие другие по&nbsp;низким ценам
-            </p>
-            <a href="#catalog" class="btn-reset btn btn--primary js-move-to">
-              Перейти к покупкам
-            </a>
+            <div class="hero__content">
+              <span class="hero__badge">Новая коллекция • Релизы 2026</span>
+              <h1 class="hero__title">
+                Оригинальные кроссовки мировых брендов с&nbsp;доставкой по&nbsp;СНГ
+              </h1>
+              <p class="hero__descr">
+                Лимитированные релизы и культовая классика Nike, Adidas Originals, New Balance, Reebok и Converse. Ручная проверка подлинности, заводская упаковка и бесплатная примерка перед покупкой.
+              </p>
+              <div class="hero__actions">
+                <a href="#catalog" class="btn btn-reset btn--primary js-move-to">
+                  Смотреть каталог
+                </a>
+                <a href="#quiz" class="btn btn-reset btn--outline js-move-to">
+                  Подобрать пару
+                </a>
+              </div>
+            </div>
+            <div class="hero__showcase">
+              <div class="hero__card">
+                <span class="hero__card-badge">Хит сезона</span>
+                <img
+                  src="./data/images/6/1.webp"
+                  alt="Nike Air Force 1"
+                  class="hero__card-img"
+                  width="440"
+                  height="440"
+                  fetchpriority="high"
+                />
+                <div class="hero__card-info">
+                  <div class="hero__card-meta">
+                    <span class="hero__card-brand">Nike</span>
+                    <strong class="hero__card-name">Air Force 1 '07 Classic</strong>
+                  </div>
+                  <span class="hero__card-price">9 990 ₽</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="container hero__features">
+            <ul class="features list-reset grid">
+              <li class="features__item">
+                <div class="features__icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    <path d="m9 12 2 2 4-4"/>
+                  </svg>
+                </div>
+                <div class="features__text">
+                  <strong class="features__title">100% Оригинал</strong>
+                  <span class="features__desc">Проверка CheckCheck & Poizon</span>
+                </div>
+              </li>
+              <li class="features__item">
+                <div class="features__icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="1" y="3" width="15" height="13"/>
+                    <polygon points="16 8 20 8 23 11 23 16 16 16 8"/>
+                    <circle cx="5.5" cy="18.5" r="2.5"/>
+                    <circle cx="18.5" cy="18.5" r="2.5"/>
+                  </svg>
+                </div>
+                <div class="features__text">
+                  <strong class="features__title">Быстрая доставка</strong>
+                  <span class="features__desc">От 1 дня со склада в Москве</span>
+                </div>
+              </li>
+              <li class="features__item">
+                <div class="features__icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                  </svg>
+                </div>
+                <div class="features__text">
+                  <strong class="features__title">Примерка до оплаты</strong>
+                  <span class="features__desc">Привезем 2 размера на выбор</span>
+                </div>
+              </li>
+              <li class="features__item">
+                <div class="features__icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="23 4 23 10 17 10"/>
+                    <polyline points="1 20 1 14 7 14"/>
+                    <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+                  </svg>
+                </div>
+                <div class="features__text">
+                  <strong class="features__title">Гарантия 14 дней</strong>
+                  <span class="features__desc">Простой обмен и возврат</span>
+                </div>
+              </li>
+            </ul>
           </div>
         </section>
 
         <section class="catalog" id="catalog">
           <div class="container catalog__container">
-            <h2 class="title catalog__title reveal">Каталог</h2>
+            <div class="catalog__top">
+              <h2 class="title catalog__title reveal">Каталог кроссовок</h2>
+              <span class="catalog__count">В наличии 14 моделей</span>
+            </div>
             <div class="catalog__content grid">
               <div class="catalog__left">
                 <div class="catalog-filters">
@@ -338,21 +422,33 @@
           />
           <div class="container about__container">
             <div class="about__text">
-              <h2 class="title about__title reveal">Пара слов о нас</h2>
-              <p class="about__descr">
+              <span class="about__label">Сникер-культура с 2019 года</span>
+              <h2 class="title about__title reveal">Оригинальные релизы. Без компромиссов.</h2>
+              <div class="about__descr">
                 <q class="about__quote">
-                  Спорт держит нас в&nbsp;форме. Учит дисциплине. Объединяет
-                  нас. Через спорт мы&nbsp;можем менять жизни. В&nbsp;том числе
-                  с&nbsp;помощью воодушевляющих историй спортсменов. Чтобы
-                  помочь тебе подняться и&nbsp;двигаться вперед.
+                  Мы создавали SneakMax как пространство для тех, кто ценит историю и эстетику уличной обуви. Каждая пара проходит ручную многоуровневую верификацию перед отправкой. Для нас кроссовки — это культура и сообщество.
                 </q>
-                <cite class="about__author">SneakMax</cite>
-              </p>
+                <cite class="about__author">Максим Золотарев, основатель SneakMax</cite>
+              </div>
+              <ul class="about__stats list-reset">
+                <li class="about__stat">
+                  <strong class="about__stat-value">6+ лет</strong>
+                  <span class="about__stat-label">на рынке</span>
+                </li>
+                <li class="about__stat">
+                  <strong class="about__stat-value">15 000+</strong>
+                  <span class="about__stat-label">довольных клиентов</span>
+                </li>
+                <li class="about__stat">
+                  <strong class="about__stat-value">100%</strong>
+                  <span class="about__stat-label">проверка CheckCheck</span>
+                </li>
+              </ul>
             </div>
             <div class="about__image">
               <img
                 src="img/about.webp"
-                alt="О компании SneakMax"
+                alt="Шоурум и лаборатория проверки SneakMax"
                 width="680"
                 height="580"
                 loading="lazy"
@@ -521,11 +617,11 @@
                   class="faq-accordion__control btn-reset"
                   aria-expanded="false"
                 >
-                  <span class="faq-accordion__title">Вопрос 1</span>
+                  <span class="faq-accordion__title">Как вы проверяете подлинность кроссовок?</span>
                   <span class="faq-accordion__icon"></span>
                 </button>
                 <div class="faq-accordion__content" aria-hidden="true">
-                  <p>Ответ 1</p>
+                  <p>Каждая пара проходит двойную верификацию: физический осмотр экспертами нашего центра аутентификации (проверка швов, маркировок, ультрафиолетовых меток и качества материалов) и цифровую сверку с базами CheckCheck и Poizon. Мы гарантируем 100% оригинальность всех моделей.</p>
                 </div>
               </li>
               <li class="faq-accordion">
@@ -533,11 +629,47 @@
                   class="faq-accordion__control btn-reset"
                   aria-expanded="false"
                 >
-                  <span class="faq-accordion__title">Вопрос 2</span>
+                  <span class="faq-accordion__title">Как работает примерка перед покупкой?</span>
                   <span class="faq-accordion__icon"></span>
                 </button>
                 <div class="faq-accordion__content" aria-hidden="true">
-                  <p>Ответ 2</p>
+                  <p>При курьерской доставке вы можете заказать до двух смежных размеров для примерки. У вас будет 15 минут, чтобы примерить обувь и убедиться в идеальной посадке, после чего оплатить только подходящую пару.</p>
+                </div>
+              </li>
+              <li class="faq-accordion">
+                <button
+                  class="faq-accordion__control btn-reset"
+                  aria-expanded="false"
+                >
+                  <span class="faq-accordion__title">Сколько времени занимает доставка?</span>
+                  <span class="faq-accordion__icon"></span>
+                </button>
+                <div class="faq-accordion__content" aria-hidden="true">
+                  <p>По Москве и Санкт-Петербургу доставляем на следующий день собственной курьерской службой. В регионы России и страны СНГ заказы отправляются экспресс-службами СДЭК и Boxberry — средний срок составляет от 2 до 5 рабочих дней.</p>
+                </div>
+              </li>
+              <li class="faq-accordion">
+                <button
+                  class="faq-accordion__control btn-reset"
+                  aria-expanded="false"
+                >
+                  <span class="faq-accordion__title">Можно ли обменять или вернуть товар?</span>
+                  <span class="faq-accordion__icon"></span>
+                </button>
+                <div class="faq-accordion__content" aria-hidden="true">
+                  <p>Да, вы можете вернуть товар или обменять его на другой размер в течение 14 дней с момента получения при условии сохранения товарного вида, заводских пломб, бирок и оригинальной коробки.</p>
+                </div>
+              </li>
+              <li class="faq-accordion">
+                <button
+                  class="faq-accordion__control btn-reset"
+                  aria-expanded="false"
+                >
+                  <span class="faq-accordion__title">Какие способы оплаты доступны?</span>
+                  <span class="faq-accordion__icon"></span>
+                </button>
+                <div class="faq-accordion__content" aria-hidden="true">
+                  <p>Оплатить заказ можно картами Мир, Visa, Mastercard, через Систему быстрых платежей (СБП) со скидкой 3%, а также наличными или банковской картой курьеру при получении после примерки.</p>
                 </div>
               </li>
             </ul>
@@ -550,7 +682,7 @@
               <h2 class="title contacts__title reveal">Контакты</h2>
               <div class="contacts__item">
                 <h3 class="contacts__subtitle">
-                  Главный офис
+                  Флагманский шоурум
                   <span class="tooltip">
                     <button
                       class="tooltip__btn btn-reset"
@@ -563,37 +695,39 @@
                     </button>
                     <span class="tooltip__txt" role="tooltip" id="office">
                       <span class="visually-hidden">Тултип: </span>
-                      Адрес и телефон для корреспонденции, инвесторов. Вопросы о
-                      доставке, качестве обслуживания и товара просьба задавать
-                      в отдел продаж
+                      Шоурум и пункт самовывоза. Доступна примерка перед покупкой и консультация стилиста.
                     </span>
                   </span>
                 </h3>
-                <a href="tel:+375293657888" class="contacts__phone">+37529 3657888</a>
+                <a href="tel:+74957946201" class="contacts__phone">+7 (495) 794-62-01</a>
                 <span class="contacts__address"
-                  >г. Минск, Комсомольская, 43 к1</span
+                  >Москва, ул. Большая Новодмитровская, 36, стр. 2</span
                 >
               </div>
               <div class="contacts__item">
-                <h3 class="contacts__subtitle">Отдел продаж</h3>
-                <a href="tel:+375292349878" class="contacts__phone">+37529 2349878</a>
+                <h3 class="contacts__subtitle">Клиентский сервис и онлайн-заказы</h3>
+                <a href="tel:+78005553535" class="contacts__phone">+7 (800) 555-35-35</a>
                 <span class="contacts__address"
-                  >г. Минск, Комсомольская, 43 к1</span
+                  >Ежедневно с 10:00 до 22:00 • Бесплатно по РФ</span
                 >
               </div>
               <ul class="social list-reset">
                 <li class="social__item">
                   <a
-                    href="index.html#"
+                    href="https://vk.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     class="social__link social__link--vk"
                     aria-label="Мы во Вконтакте"
                   ></a>
                 </li>
                 <li class="social__item">
                   <a
-                    href="index.html#"
+                    href="https://t.me"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     class="social__link social__link--insta"
-                    aria-label="Мы в Инстаграме"
+                    aria-label="Наш Telegram-канал"
                   ></a>
                 </li>
               </ul>
@@ -1018,7 +1152,7 @@
     </button>
     <div class="toast-msg" id="toastMsg" role="status" aria-live="polite"></div>
     <script>window.PRODUCTS_DATA=[{"id":1,"title":"Кроссовки Reebok Club C 85","price":7490,"mainImage":"./data/images/1/1.webp","gallery":["./data/images/1/1.webp","./data/images/1/2.webp","./data/images/1/3.webp"],"sizes":[39,40,41,42,43],"description":"Кроссовки Reebok Club C 85 — культовая теннисная классика 1985 года. Мягкий кожаный верх обеспечивает комфортную посадку, а прочная резиновая подошва гарантирует надежное сцепление на каждый день.","chars":{"Пол":"Мужской","Цвета":"Белый / Синий","Страна":"Вьетнам","Состав":"Натуральная кожа, текстиль, резина"}},{"id":2,"title":"Кроссовки Nike Waffle Trainer 2 SP","oldPrice":10000,"price":8500,"mainImage":"./data/images/2/1.webp","gallery":["./data/images/2/1.webp","./data/images/2/2.webp","./data/images/2/3.webp"],"sizes":[36,37,38,39,40,41,42],"description":"Винтажный беговой силуэт с легендарной вафельной подошвой. Сочетание замши и нейлона придает ретро-эстетику, а упругая промежуточная подошва дарит комфорт при длительной ходьбе.","chars":{"Страна":"Индонезия","Цвета":"Оранжевый","Состав":"Замша, текстиль, резина","Пол":"Унисекс"}},{"id":3,"title":"Кроссовки adidas Originals Broomfield","price":8490,"mainImage":"./data/images/3/1.webp","gallery":["./data/images/3/1.webp","./data/images/3/2.webp"],"sizes":[36,37,38,39,40,41,42],"description":"Модель в эстетике террасной культуры с лаконичным силуэтом. Верх из высококачественной замши с фирменными тремя полосками и золотистым тиснением названия модели.","chars":{"Страна":"Вьетнам","Цвета":"Светло-серый / Белый","Состав":"Натуральная замша, кожа, резина","Пол":"Унисекс"}},{"id":4,"title":"Кроссовки Nike WMNS Lahar Low","price":11000,"oldPrice":13500,"mainImage":"./data/images/4/1.webp","gallery":["./data/images/4/1.webp","./data/images/4/2.webp","./data/images/4/3.webp","./data/images/4/4.webp","./data/images/4/5.webp"],"sizes":[35,36,37,38,39,40],"description":"Созданные для городских улиц и хайкинга, Lahar Low воплощают надежность ботинок 1989 года. Плотная кожа, усиленная шнуровка и глубокий рельефный протектор защитят в любую погоду.","chars":{"Страна":"Вьетнам","Цвета":"Коричневый / Черный","Состав":"Плотная кожа, текстиль, прочная резина","Пол":"Женский"}},{"id":5,"title":"Кроссовки Nike WMNS Blazer Mid","price":8490,"mainImage":"./data/images/5/1.webp","gallery":["./data/images/5/1.webp","./data/images/5/2.webp","./data/images/5/3.webp"],"sizes":[35,36,37,38,39,40],"description":"WMNS Blazer Mid 77 SE — легендарный баскетбольный силуэт с акцентными деталями. Высокий воротник фиксирует голеностоп, а винтажная обработка подошвы придает аутентичный стиль.","chars":{"Страна":"Вьетнам","Цвета":"Белый","Состав":"Кожа, замша, текстиль, резина","Пол":"Женский"}},{"id":6,"title":"Кроссовки Nike Air Force 1","price":9990,"mainImage":"./data/images/6/1.webp","gallery":["./data/images/6/1.webp","./data/images/6/2.webp","./data/images/6/3.webp"],"sizes":[39,40,41,42,43],"description":"Икона уличного стиля с амортизацией Nike Air. Перфорация на мыске обеспечивает вентиляцию, а круговой рисунок протектора Pivot Point — проверенное временем сцепление.","chars":{"Страна":"Вьетнам","Цвета":"Серый / Белый","Состав":"Натуральная кожа, текстиль, резина","Пол":"Мужской"}},{"id":7,"title":"Кроссовки PUMA Suede Teams","price":6990,"mainImage":"./data/images/7/1.webp","gallery":["./data/images/7/1.webp","./data/images/7/2.webp","./data/images/7/3.webp"],"sizes":[36,37,38,39,40,41,42],"description":"Легендарная замшевая классика PUMA в клубных расцветках. Богатая фактура замши, контрастная фирменная полоса Formstrip и мягкий бортик для непревзойденного комфорта.","chars":{"Страна":"Румыния","Цвета":"Бордовый / Белый","Состав":"Натуральная замша, резина","Пол":"Унисекс"}},{"id":8,"title":"Кроссовки PUMA Ralph Sampson Low","price":9990,"mainImage":"./data/images/8/1.webp","gallery":["./data/images/8/1.webp","./data/images/8/2.webp","./data/images/8/3.webp"],"sizes":[39,40,41,42,43],"description":"Именная модель баскетболиста Ральфа Сэмпсона. Чистый минималистичный дизайн из гладкой кожи с золотистым автографом легенды на боковой панели.","chars":{"Страна":"Китай","Цвета":"Белый","Состав":"Кожа, текстиль, резина","Пол":"Мужской"}},{"id":9,"title":"Кроссовки Nike Air Force 1 Shadow","price":11000,"oldPrice":12900,"mainImage":"./data/images/9/1.webp","gallery":["./data/images/9/1.webp","./data/images/9/2.webp","./data/images/9/3.webp","./data/images/9/4.webp"],"sizes":[35,36,37,38,39,40],"description":"Игривое переосмысление классики: двойные элементы брендинга, два люверса для шнуровки и увеличенная промежуточная подошва подчеркивают ДНК Air Force 1.","chars":{"Страна":"Вьетнам","Цвета":"Белый / Розовый","Состав":"Кожа, текстиль, пеноматериал, резина","Пол":"Женский"}},{"id":10,"title":"Кроссовки adidas Originals Continental 80","price":8990,"oldPrice":10500,"mainImage":"./data/images/3/1.webp","gallery":["./data/images/3/1.webp","./data/images/3/2.webp"],"sizes":[36,37,38,39,40,41,42],"description":"Ретро-кроссовки в стиле фитнес-эстетики 80-х годов. Двухцветная полоса на боковой стороне и раздельная резиновая подошва cupsole обеспечивают мягкость и гибкость шага.","chars":{"Пол":"Унисекс","Цвета":"Белый / Красный","Страна":"Индонезия","Состав":"Натуральная кожа, текстиль, резина"}},{"id":11,"title":"Кроссовки Converse Chuck 70 Classic","oldPrice":9500,"price":7990,"mainImage":"./data/images/2/1.webp","gallery":["./data/images/2/1.webp","./data/images/2/2.webp","./data/images/2/3.webp"],"sizes":[36,37,38,39,40,41,42],"description":"Премиальная версия Chuck Taylor с улучшенной амортизацией стельки OrthoLite, плотным канвасом 340г и винтажной глянцевой подошвой цвета экру.","chars":{"Страна":"Вьетнам","Цвета":"Черный / Белый","Состав":"Плотный текстиль, парусина, вулканизированная резина","Пол":"Унисекс"}},{"id":12,"title":"Кроссовки New Balance 574 Core","oldPrice":11990,"price":9990,"mainImage":"./data/images/7/1.webp","gallery":["./data/images/7/1.webp","./data/images/7/2.webp","./data/images/7/3.webp"],"sizes":[39,40,41,42,43],"description":"Самая узнаваемая модель New Balance. Технология ENCAP в подошве сочетает мягкую пену EVA с полиуретановым ободом для максимальной стабильности и поддержки стопы.","chars":{"Пол":"Мужской","Цвета":"Серый / Графитовый","Страна":"Вьетнам","Состав":"Натуральная замша, дышащий текстиль, EVA, резина"}},{"id":13,"title":"Кроссовки Vans Old Skool Pro","price":6990,"mainImage":"./data/images/8/1.webp","gallery":["./data/images/8/1.webp","./data/images/8/2.webp","./data/images/8/3.webp"],"sizes":[36,37,38,39,40,41,42],"description":"Культовая скейтбордическая классика с боковой полосой Sidestripe. Усиленные мыски для износостойкости, мягкие канты и фирменная вафельная подошва из цепкой резины.","chars":{"Пол":"Унисекс","Цвета":"Черный / Белый","Страна":"Китай","Состав":"Замша, парусина, резина"}},{"id":14,"title":"Кроссовки Nike Air Max 90 Terrascape","oldPrice":14990,"price":12490,"mainImage":"./data/images/5/1.webp","gallery":["./data/images/5/1.webp","./data/images/5/2.webp","./data/images/5/3.webp"],"sizes":[39,40,41,42,43],"description":"Обновленный взгляд на силуэт Air Max 90 с полупрозрачной подметкой Crater Foam и видимой воздушной подушкой Max Air. Удобная петля на пятке и усиленные швы.","chars":{"Пол":"Мужской","Цвета":"Светло-серый / Оливковый","Страна":"Вьетнам","Состав":"Рипстоп текстиль, переработанные полимеры, Nike Air"}}];</script>
-    <script defer src="js/vendor.min.js?v=2"></script>
-    <script defer src="js/main.min.js?v=2"></script>
+    <script defer src="js/vendor.min.js?v=3"></script>
+    <script defer src="js/main.min.js?v=3"></script>
   </body>
 </html>

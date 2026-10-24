@@ -34,7 +34,7 @@
       media="(min-width: 768px)"
       fetchpriority="high"
     />
-    <link rel="stylesheet" href="css/style.min.css?v=13" />
+    <link rel="stylesheet" href="css/style.min.css?v=14" />
   </head>
 
   <body>
@@ -748,15 +748,46 @@
                 </li>
               </ul>
             </div>
-            <div class="contacts__map" id="map">
-              <iframe
-                src="https://yandex.ru/map-widget/v1/?ll=37.64,55.76&z=7"
-                width="100%"
-                height="100%"
-                frameborder="0"
-                loading="lazy"
-                title="Офис SneakMax на карте"
-              ></iframe>
+            <div class="contacts__map-wrapper">
+              <div class="contacts__map" id="map">
+                <iframe
+                  src="https://www.openstreetmap.org/export/embed.html?bbox=37.5750%2C55.7980%2C37.5960%2C55.8110&amp;layer=mapnik&amp;marker=55.8052%2C37.5857"
+                  width="100%"
+                  height="100%"
+                  style="border: 0;"
+                  loading="lazy"
+                  title="Шоурум SneakMax на карте"
+                ></iframe>
+              </div>
+              <div class="contacts__routes">
+                <span class="contacts__routes-label">Построить маршрут:</span>
+                <div class="contacts__routes-btns">
+                  <a
+                    href="https://yandex.ru/maps/?rtext=~55.8052,37.5857&rtt=auto"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn-reset contacts__route-btn contacts__route-btn--yandex"
+                  >
+                    Яндекс Карты
+                  </a>
+                  <a
+                    href="https://2gis.ru/moscow/search/55.8052%2C37.5857"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn-reset contacts__route-btn contacts__route-btn--2gis"
+                  >
+                    2ГИС
+                  </a>
+                  <a
+                    href="https://www.google.com/maps/dir/?api=1&destination=55.8052,37.5857"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn-reset contacts__route-btn contacts__route-btn--google"
+                  >
+                    Google Maps
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </section>

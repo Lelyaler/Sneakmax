@@ -405,7 +405,7 @@ template {
   border-radius: 3px; }
 
 .noUi-connect {
-  background: #3FB8AF; }
+  background: var(--color-accent, #d93232); }
 
 .noUi-draggable {
   cursor: ew-resize; }

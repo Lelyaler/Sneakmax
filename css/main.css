@@ -188,6 +188,8 @@
   opacity: 0;
   transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: opacity;
+  -webkit-mask-image: linear-gradient(to right, #000 0%, #000 86%, rgba(0, 0, 0, 0.6) 95%, transparent 100%);
+  mask-image: linear-gradient(to right, #000 0%, #000 86%, rgba(0, 0, 0, 0.6) 95%, transparent 100%);
 }
 .hero__slide--active {
   opacity: 1;
@@ -202,7 +204,7 @@
     rgba(24, 29, 38, 0.98) 0%,
     rgba(24, 29, 38, 0.92) 50%,
     rgba(24, 29, 38, 0.6) 80%,
-    rgba(24, 29, 38, 0.3) 100%
+    rgba(24, 29, 38, 0.9) 100%
   );
 }
 .hero__container {
@@ -322,7 +324,9 @@
       rgba(24, 29, 38, 1) 0%,
       rgba(24, 29, 38, 0.94) 42%,
       rgba(24, 29, 38, 0.45) 75%,
-      rgba(24, 29, 38, 0.15) 100%
+      rgba(24, 29, 38, 0.2) 88%,
+      rgba(24, 29, 38, 0.6) 96%,
+      rgba(24, 29, 38, 1) 100%
     );
   }
   .hero__title {
@@ -337,9 +341,6 @@
   .hero {
     padding: 140px 0 80px;
     min-height: 700px;
-  }
-  .hero__slide {
-    background-position: calc(100% - 30px) center;
   }
   .features {
     grid-template-columns: repeat(4, 1fr);
@@ -356,9 +357,12 @@
     background: linear-gradient(
       to right,
       rgba(24, 29, 38, 1) 0%,
-      rgba(24, 29, 38, 0.9) 45%,
-      rgba(24, 29, 38, 0.35) 75%,
-      rgba(24, 29, 38, 0.1) 100%
+      rgba(24, 29, 38, 0.92) 44%,
+      rgba(24, 29, 38, 0.35) 72%,
+      transparent 84%,
+      transparent 90%,
+      rgba(24, 29, 38, 0.5) 96%,
+      rgba(24, 29, 38, 1) 100%
     );
   }
 }

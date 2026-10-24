@@ -363,6 +363,22 @@ if (catalogList) {
         true
       );
     });
+
+    document.querySelectorAll(".product").forEach(function (card) {
+      var openBtn = card.querySelector('[data-graph-path="prod-modal"]');
+      if (!openBtn) return;
+      var imgBox = card.querySelector(".product__image");
+      var titleBox = card.querySelector(".product__title");
+      [imgBox, titleBox].forEach(function (box) {
+        if (box && !box.dataset.hasModal) {
+          box.dataset.hasModal = "true";
+          box.addEventListener("click", function (e) {
+            if (e.target.closest(".product__btns")) return;
+            openBtn.click();
+          });
+        }
+      });
+    });
     if (typeof cartLogic === "function") {
       cartLogic();
     }
@@ -1443,6 +1459,22 @@ if (rangeSlider) {
       prodQuantity = 6;
       loadProducts(prodQuantity);
       showToast("Фильтры применены");
+
+      if (window.innerWidth <= 1024 && filtersToggle && filtersBody) {
+        filtersToggle.classList.remove("catalog-filters__toggle--active");
+        filtersToggle.setAttribute("aria-expanded", "false");
+        filtersBody.classList.remove("catalog-filters__body--open");
+      }
+    });
+  }
+
+  var filtersToggle = document.querySelector(".catalog-filters__toggle");
+  var filtersBody = document.querySelector(".catalog-filters__body");
+  if (filtersToggle && filtersBody) {
+    filtersToggle.addEventListener("click", function () {
+      var isOpen = filtersToggle.classList.toggle("catalog-filters__toggle--active");
+      filtersToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      filtersBody.classList.toggle("catalog-filters__body--open", isOpen);
     });
   }
 }

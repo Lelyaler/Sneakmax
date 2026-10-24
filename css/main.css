@@ -168,7 +168,8 @@
 
 .hero {
   position: relative;
-  padding: 80px 0 50px;
+  padding: 90px 0 60px;
+  min-height: 520px;
   background-color: var(--color-eastbay);
   overflow: hidden;
 }
@@ -182,7 +183,7 @@
   position: absolute;
   inset: 0;
   background-repeat: no-repeat;
-  background-position: center right;
+  background-position: right center;
   background-size: cover;
   opacity: 0;
   transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -312,8 +313,8 @@
 
 @media (min-width: 768px) {
   .hero {
-    padding: 120px 0 60px;
-    min-height: 540px;
+    padding: 130px 0 70px;
+    min-height: 640px;
   }
   .hero__overlay {
     background: linear-gradient(
@@ -333,6 +334,13 @@
 }
 
 @media (min-width: 992px) {
+  .hero {
+    padding: 140px 0 80px;
+    min-height: 700px;
+  }
+  .hero__slide {
+    background-position: calc(100% - 30px) center;
+  }
   .features {
     grid-template-columns: repeat(4, 1fr);
     gap: 28px;
@@ -341,7 +349,8 @@
 
 @media (min-width: 1200px) {
   .hero {
-    min-height: 580px;
+    padding: 150px 0 90px;
+    min-height: 740px;
   }
   .hero__overlay {
     background: linear-gradient(

@@ -1045,8 +1045,7 @@ var quizTemplate = function quizTemplate() {
     if (item.type === "checkbox") {
       var imgHtml = item.img
         ? '\n          <img src="'
-            .concat(item.img, '" alt="')
-            .concat(item.answer_title, '" width="280" height="120" loading="lazy">')
+            .concat(item.img, '" alt="" aria-hidden="true" width="280" height="220" loading="lazy">')
         : "";
       return '\n        <li class="quiz-question__item'
         .concat(item.img ? "" : " quiz-question__item--no-img", '">')

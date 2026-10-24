@@ -963,32 +963,32 @@ var quizData = [
       {
         answer_title: "Городские повседневные",
         type: "checkbox",
-        img: "./data/images/6/1.webp",
+        img: "img/quiz-lifestyle.webp",
       },
       {
         answer_title: "Беговые и тренировочные",
         type: "checkbox",
-        img: "./data/images/2/2.webp",
+        img: "img/quiz-running.webp",
       },
       {
         answer_title: "Высокие баскетбольные",
         type: "checkbox",
-        img: "./data/images/5/1.webp",
+        img: "img/quiz-basketball.webp",
       },
       {
         answer_title: "Скейтбординг и кеды",
         type: "checkbox",
-        img: "./data/images/8/1.webp",
+        img: "img/quiz-skate.webp",
       },
       {
         answer_title: "Трейл и непогода",
         type: "checkbox",
-        img: "./data/images/4/1.webp",
+        img: "img/quiz-trail.webp",
       },
       {
         answer_title: "Ретро-классика",
         type: "checkbox",
-        img: "./data/images/1/1.webp",
+        img: "img/quiz-retro.webp",
       },
     ],
   },
@@ -1254,33 +1254,29 @@ var Quiz = /*#__PURE__*/ (function () {
         }
 
         var elements = this.$el.querySelectorAll("input");
+        var hasChecked = false;
         elements.forEach(function (el) {
-          switch (el.nodeName) {
-            case "INPUT":
-              switch (el.type) {
-                case "text":
-                  if (el.value) {
-                    isValid = true;
-                  } else {
-                    el.classList.add("error");
-                  }
-
-                case "checkbox":
-                  if (el.checked) {
-                    isValid = true;
-                  } else {
-                    el.classList.add("error");
-                  }
-
-                case "radio":
-                  if (el.checked) {
-                    isValid = true;
-                  } else {
-                    el.classList.add("error");
-                  }
-              }
+          if (el.type === "checkbox" || el.type === "radio") {
+            if (el.checked) {
+              hasChecked = true;
+            }
+          } else if (el.type === "text") {
+            if (el.value.trim().length > 0) {
+              isValid = true;
+            }
           }
         });
+
+        if (hasChecked) {
+          isValid = true;
+          elements.forEach(function (el) {
+            el.classList.remove("error");
+          });
+        } else if (!isValid) {
+          elements.forEach(function (el) {
+            el.classList.add("error");
+          });
+        }
         return isValid;
       },
     },

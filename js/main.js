@@ -461,6 +461,18 @@ if (catalogList) {
     getProductsData().then(function (data) {
       var filtered = getFilteredProducts(data);
       dataLength = filtered.length;
+      var catalogCount = document.querySelector(".catalog__count");
+      if (catalogCount) {
+        var count = filtered.length;
+        var words = ["модель", "модели", "моделей"];
+        var word =
+          words[
+            count % 100 > 4 && count % 100 < 20
+              ? 2
+              : [2, 0, 1, 1, 1, 2][count % 10 < 5 ? Math.abs(count % 10) : 5]
+          ];
+        catalogCount.textContent = "В наличии " + count + " " + word;
+      }
       renderProductsList(filtered, quantity);
     });
   };
@@ -949,24 +961,34 @@ var quizData = [
     answer_alias: "type",
     answers: [
       {
-        answer_title: "кеды",
+        answer_title: "Городские повседневные",
         type: "checkbox",
+        img: "./data/images/6/1.webp",
       },
       {
-        answer_title: "кеды",
+        answer_title: "Беговые и тренировочные",
         type: "checkbox",
+        img: "./data/images/2/2.webp",
       },
       {
-        answer_title: "кеды",
+        answer_title: "Высокие баскетбольные",
         type: "checkbox",
+        img: "./data/images/5/1.webp",
       },
       {
-        answer_title: "кеды",
+        answer_title: "Скейтбординг и кеды",
         type: "checkbox",
+        img: "./data/images/8/1.webp",
       },
       {
-        answer_title: "кеды",
+        answer_title: "Трейл и непогода",
         type: "checkbox",
+        img: "./data/images/4/1.webp",
+      },
+      {
+        answer_title: "Ретро-классика",
+        type: "checkbox",
+        img: "./data/images/1/1.webp",
       },
     ],
   },
@@ -976,19 +998,19 @@ var quizData = [
     answer_alias: "size",
     answers: [
       {
-        answer_title: "Менее 36",
+        answer_title: "35 — 37",
         type: "checkbox",
       },
       {
-        answer_title: "36-38",
+        answer_title: "38 — 40",
         type: "checkbox",
       },
       {
-        answer_title: "39-41",
+        answer_title: "41 — 42",
         type: "checkbox",
       },
       {
-        answer_title: "42-44",
+        answer_title: "43 — 44",
         type: "checkbox",
       },
       {
@@ -1003,7 +1025,7 @@ var quizData = [
     answer_alias: "message",
     answers: [
       {
-        answer_title: "Введите сообщение",
+        answer_title: "Укажите любимые бренды, цвета или бюджет...",
         type: "textarea",
       },
     ],
@@ -1021,7 +1043,14 @@ var quizTemplate = function quizTemplate() {
   var nextBtnText = options.nextBtnText;
   var answers = data.answers.map(function (item) {
     if (item.type === "checkbox") {
-      return '\n        <li class="quiz-question__item">\n          <img src="img/sneaker.webp" alt="Кроссовки" width="280" height="120" loading="lazy">\n          <label class="custom-checkbox quiz-question__label">\n            <input type="'
+      var imgHtml = item.img
+        ? '\n          <img src="'
+            .concat(item.img, '" alt="')
+            .concat(item.answer_title, '" width="280" height="120" loading="lazy">')
+        : "";
+      return '\n        <li class="quiz-question__item'
+        .concat(item.img ? "" : " quiz-question__item--no-img", '">')
+        .concat(imgHtml, '\n          <label class="custom-checkbox quiz-question__label">\n            <input type="')
         .concat(
           item.type,
           '" class="custom-checkbox__field quiz-question__answer" data-valid="false" name="'

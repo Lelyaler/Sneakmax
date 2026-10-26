@@ -1172,6 +1172,9 @@
 .faq {
   padding: var(--big-offset);
 }
+.faq__title {
+  text-align: center;
+}
 .faq__list {
   margin: 0 auto;
   max-width: 880px;
